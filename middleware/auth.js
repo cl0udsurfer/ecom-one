@@ -28,7 +28,7 @@ exports.protect = asyncHandler(async (req, res, next) => {
 
     if (req.user.role === 0) {
       return res.status(403).json({
-        error: 'Admin resourse! Access denied'
+        error: 'Admin resource. Access denied'
       });
     }
 

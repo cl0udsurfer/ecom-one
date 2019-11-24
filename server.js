@@ -1,11 +1,14 @@
 const express = require('express');
 const dotenv = require('dotenv');
 const morgan = require('morgan');
+const cors = require('cors');
 
 const connectDB = require('./config/db');
 const errorHandler = require('./middleware/error');
 
 const app = express();
+
+app.use(cors());
 
 // Load env vars
 dotenv.config({ path: './config/config.env' });
