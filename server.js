@@ -21,6 +21,12 @@ if (process.env.NODE_ENV === 'development') {
 // DB Connection
 connectDB();
 
+// Route Files
+const auth = require('./routes/auth');
+
+// Mount Routers
+app.use('/api/v1/auth', auth);
+
 // Errorhandler Middleware
 app.use(errorHandler);
 
