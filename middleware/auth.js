@@ -14,10 +14,6 @@ exports.protect = asyncHandler(async (req, res, next) => {
     token = req.headers.authorization.split(' ')[1];
   }
 
-  //else if (req.cookies.token) {
-  //  token = req.cookies.token;
-  // }
-
   if (!token) {
     return next(new ErrorResponse('Not authorized to access this route', 401));
   }
@@ -29,6 +25,12 @@ exports.protect = asyncHandler(async (req, res, next) => {
     console.log(decoded.id);
 
     req.user = await User.findById(decoded.id);
+
+    if (req.user.role === 0) {
+      return res.status(403).json({
+        error: 'Admin resourse! Access denied'
+      });
+    }
 
     next();
   } catch (err) {
