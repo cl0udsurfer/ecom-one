@@ -1,33 +1,66 @@
+# Use antd in create-react-app ✨
+
+[Create React App](https://facebook.github.io/create-react-app/) + [Ant Design](https://ant.design).
+
+## Step by Step Documentation
+
+- 🇺🇸 English: https://ant.design/docs/react/use-with-create-react-app
+- 🇨🇳 中文：https://ant.design/docs/react/use-with-create-react-app-cn
+
+## Preview
+
+```bash
+$ npm install
+$ npm start
+```
+
+or:
+
+```bash
+$ yarn
+$ yarn start
+```
+
+## See more
+
+- [antd](http://github.com/ant-design/ant-design/)
+- [babel-plugin-import](http://github.com/ant-design/babel-plugin-import/)
+- [create-react-app](https://github.com/facebookincubator/create-react-app)
+- [react-app-rewired](https://github.com/timarney/react-app-rewired)
+- [less-loader](https://github.com/webpack/less-loader)
+
+---
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts
 
 In the project directory, you can run:
 
-### `yarn start`
+### `npm start`
 
-Runs the app in the development mode.<br />
+Runs the app in the development mode.<br>
 Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
 
-The page will reload if you make edits.<br />
+The page will reload if you make edits.<br>
 You will also see any lint errors in the console.
 
-### `yarn test`
+### `npm test`
 
-Launches the test runner in the interactive watch mode.<br />
+Launches the test runner in the interactive watch mode.<br>
 See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
 
-### `yarn build`
+### `npm run build`
 
-Builds the app for production to the `build` folder.<br />
+Builds the app for production to the `build` folder.<br>
 It correctly bundles React in production mode and optimizes the build for the best performance.
 
-The build is minified and the filenames include the hashes.<br />
+The build is minified and the filenames include the hashes.<br>
 Your app is ready to be deployed!
 
 See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
 
-### `yarn eject`
+### `npm run eject`
 
 **Note: this is a one-way operation. Once you `eject`, you can’t go back!**
 
@@ -63,6 +96,6 @@ This section has moved here: https://facebook.github.io/create-react-app/docs/ad
 
 This section has moved here: https://facebook.github.io/create-react-app/docs/deployment
 
-### `yarn build` fails to minify
+### `npm run build` fails to minify
 
 This section has moved here: https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify
