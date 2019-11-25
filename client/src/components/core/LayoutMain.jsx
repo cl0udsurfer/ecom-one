@@ -1,8 +1,8 @@
-import React from 'react';
+import React, { Fragment } from 'react';
 import { Link, withRouter, Redirect } from 'react-router-dom';
 import { Layout, Menu, Breadcrumb } from 'antd';
 
-import { logout } from '../../api/auth';
+import { logout, isAuthenticated } from '../../api/auth';
 
 const { Header, Content, Footer } = Layout;
 
@@ -29,14 +29,23 @@ const LayoutMain = ({
             <Link to='/'>Home</Link>
           </Menu.Item>
           <Menu.Item>
-            <Link to='/signup'>Signup</Link>
+            <Link to='/dashboard'>Dashboard</Link>
           </Menu.Item>
-          <Menu.Item>
-            <Link to='/signin'>Signin</Link>
-          </Menu.Item>
-          <Menu.Item>
-            <span onClick={() => logout()}>Signout</span>
-          </Menu.Item>
+          {!isAuthenticated() && (
+            <Menu.Item>
+              <Link to='/signup'>Signup</Link>
+            </Menu.Item>
+          )}
+          {!isAuthenticated() && (
+            <Menu.Item>
+              <Link to='/signin'>Signin</Link>
+            </Menu.Item>
+          )}
+          {isAuthenticated() && (
+            <Menu.Item>
+              <span onClick={() => logout()}>Signout</span>
+            </Menu.Item>
+          )}
         </Menu>
       </Header>
       <Content style={{ padding: '0 50px', marginTop: 64 }}>
@@ -50,7 +59,7 @@ const LayoutMain = ({
         </div>
       </Content>
       <Footer style={{ textAlign: 'center' }}>
-        Ant Design ©2018 Created by Ant UED
+        ©2019 Created by cl0udsurfer
       </Footer>
     </Layout>
   );
