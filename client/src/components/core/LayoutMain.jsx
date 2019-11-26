@@ -9,7 +9,6 @@ const { Header, Content, Footer } = Layout;
 const LayoutMain = ({
   title = 'Title',
   description = 'Description',
-  className,
   children
 }) => {
   return (

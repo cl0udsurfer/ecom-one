@@ -6,7 +6,7 @@ import { isAuthenticated } from '../../api/auth';
 
 const UserDashboard = () => {
   const {
-    user: { _id, name, email, role }
+    user: { name, email, role }
   } = isAuthenticated();
 
   return (
@@ -15,12 +15,16 @@ const UserDashboard = () => {
       <Row gutter={16}>
         <Col span={8}>
           <Card title='User Information' bordered={true}>
-            {name}
+            Name: {name}
+            <br />
+            Email: {email}
+            <br />
+            {role === 1 ? 'Administrator' : 'Registered User'}
           </Card>
         </Col>
         <Col span={8}>
           <Card title='Purchase History' bordered={true}>
-            {role}
+            Purchase History
           </Card>
         </Col>
       </Row>
