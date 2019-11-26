@@ -28,9 +28,16 @@ const LayoutMain = ({
           <Menu.Item>
             <Link to='/'>Home</Link>
           </Menu.Item>
-          <Menu.Item>
-            <Link to='/dashboard'>Dashboard</Link>
-          </Menu.Item>
+          {isAuthenticated() && isAuthenticated().user.role === 1 && (
+            <Menu.Item>
+              <Link to='/admin/dashboard'>Dashboard</Link>
+            </Menu.Item>
+          )}
+          {isAuthenticated() && isAuthenticated().user.role === 0 && (
+            <Menu.Item>
+              <Link to='/user/dashboard'>Dashboard</Link>
+            </Menu.Item>
+          )}
           {!isAuthenticated() && (
             <Menu.Item>
               <Link to='/signup'>Signup</Link>

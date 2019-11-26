@@ -42,7 +42,6 @@ exports.login = asyncHandler(async (req, res, next) => {
   if (!isMatch) {
     return next(new ErrorResponse('Invalid credentials', 401));
   }
-
   sendTokenResponse(user, 200, res);
 });
 
@@ -80,5 +79,5 @@ const sendTokenResponse = (user, statusCode, res) => {
   res
     .status(statusCode)
     .cookie('token', token, options)
-    .json({ success: true, token });
+    .json({ success: true, token, user });
 };

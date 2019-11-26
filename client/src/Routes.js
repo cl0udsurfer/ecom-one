@@ -14,8 +14,16 @@ const Routes = () => {
       <BrowserRouter>
         <Switch>
           <Route path='/' exact component={Home} />
-          <PrivateRoute path='/dashboard' exact component={UserDashboard} />
-          <AdminRoute path='/dashboard' exact component={AdminDashboard} />
+          <PrivateRoute
+            path='/user/dashboard'
+            exact
+            component={UserDashboard}
+          />
+          <AdminRoute
+            path='/admin/dashboard'
+            exact
+            component={AdminDashboard}
+          />
           <Route path='/signup' exact component={Signup} />
           <Route path='/signin' exact component={Signin} />
         </Switch>
