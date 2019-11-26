@@ -27,6 +27,7 @@ const AddCategory = () => {
       if (data.error) {
         setError(data.error);
       } else {
+        setName('');
         setError('');
         setSuccess(true);
       }
@@ -35,7 +36,7 @@ const AddCategory = () => {
 
   const showSuccess = () => (
     <Alert
-      message='{name} added successfully'
+      message='Category added successfully'
       type='success'
       showIcon
       style={{ display: success ? '' : 'none' }}

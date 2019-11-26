@@ -17,3 +17,42 @@ export const addCategory = (userId, token, category) => {
       console.log(err);
     });
 };
+
+export const addProduct = (userId, token, product) => {
+  console.log(product);
+  return fetch(`${API}/product`, {
+    method: 'POST',
+    headers: {
+      Accept: 'application/json',
+      'Content-Type': 'application/json',
+      Authorization: `Bearer ${token}`
+    },
+    body: JSON.stringify(product)
+  })
+    .then(response => {
+      return response.json();
+    })
+    .catch(err => {
+      console.log(err);
+    });
+};
+
+export const getCategory = categoryId => {
+  return fetch(`${API}/category/${categoryId}`, {
+    method: 'GET'
+  })
+    .then(response => {
+      return response.json();
+    })
+    .catch(err => console.log(err));
+};
+
+export const getCategories = () => {
+  return fetch(`${API}/category`, {
+    method: 'GET'
+  })
+    .then(response => {
+      return response.json();
+    })
+    .catch(err => console.log(err));
+};
