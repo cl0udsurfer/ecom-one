@@ -1,88 +1,42 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useReducer } from 'react';
 import { Link } from 'react-router-dom';
 import LayoutMain from '../../components/core/LayoutMain';
 import { isAuthenticated } from '../../api/auth';
-import { addProduct, getCategories } from '../../api/admin';
+import { addProduct } from '../../api/admin';
 
 import { Form, Input, Button, Alert } from 'antd';
 
 const AddProduct = () => {
-  const [values, setValues] = useState({
-    name: '',
-    description: '',
-    price: '',
-    categories: [],
-    category: '',
-    shipping: '',
-    quantity: '',
-    photo: '',
-    loading: false,
-    error: '',
-    createdProduct: '',
-    redirectToProfile: false,
-    formData: ''
-  });
-
-  const {
-    name,
-    description,
-    price,
-    categories,
-    category,
-    shipping,
-    quantity,
-    loading,
-    error,
-    createdProduct,
-    redirectToProfile,
-    formData
-  } = values;
+  const [userInput, setUserInput] = useReducer(
+    (state, newState) => ({ ...state, ...newState }),
+    {
+      name: '',
+      description: '',
+      category: '',
+      price: ''
+    }
+  );
+  const [error, setError] = useState('');
+  const [success, setSuccess] = useState(false);
 
   const { user, token } = isAuthenticated();
 
-  // load categories and set form data
-  const init = () => {
-    getCategories().then(data => {
-      if (data.error) {
-        setValues({ ...values, error: data.error });
-      } else {
-        setValues({
-          ...values,
-          categories: data,
-          formData: new FormData()
-        });
-      }
-    });
+  const handleChange = evt => {
+    const { name, value } = evt.target;
+
+    setUserInput({ [name]: value });
   };
 
-  useEffect(() => {
-    init();
-  }, []);
-
-  const handleChange = name => event => {
-    const value = name === 'photo' ? event.target.files[0] : event.target.value;
-    formData.set(name, value);
-    setValues({ ...values, [name]: value });
-  };
-
-  const clickSubmit = event => {
-    event.preventDefault();
-    setValues({ ...values, error: '', loading: true });
-
-    addProduct(user._id, token, formData).then(data => {
+  const clickSubmit = e => {
+    e.preventDefault();
+    console.log(JSON.stringify(userInput));
+    // make request to api to create product
+    addProduct(user._id, token, JSON.stringify(userInput)).then(data => {
       if (data.error) {
-        setValues({ ...values, error: data.error });
+        setError(data.error);
       } else {
-        setValues({
-          ...values,
-          name: '',
-          description: '',
-          photo: '',
-          price: '',
-          quantity: '',
-          loading: false,
-          createdProduct: data.name
-        });
+        setError('');
+        setSuccess(true);
       }
     });
   };
@@ -92,7 +46,7 @@ const AddProduct = () => {
       message='Product added successfully'
       type='success'
       showIcon
-      style={{ display: loading ? '' : 'none' }}
+      style={{ display: success ? '' : 'none' }}
     />
   );
 
@@ -113,37 +67,35 @@ const AddProduct = () => {
       <Form className='form' onSubmit={clickSubmit}>
         <Form.Item>
           <Input
+            name='name'
+            onChange={handleChange}
             placeholder='Name'
-            onChange={handleChange('name')}
-            value={name}
+            value={userInput.name}
           />
         </Form.Item>
         <Form.Item>
           <Input
+            name='description'
+            onChange={handleChange}
             placeholder='Description'
-            onChange={handleChange('description')}
-            value={description}
+            value={userInput.description}
           />
         </Form.Item>
         <Form.Item>
           <Input
-            placeholder='Price'
-            onChange={handleChange('price')}
-            value={price}
-          />
-        </Form.Item>
-        <Form.Item>
-          <Input
+            name='category'
+            onChange={handleChange}
             placeholder='Category'
-            onChange={handleChange('category')}
-            value={category}
+            value={userInput.category}
           />
         </Form.Item>
         <Form.Item>
           <Input
-            placeholder='Quantity'
-            onChange={handleChange('quantity')}
-            value={quantity}
+            name='price'
+            onChange={handleChange}
+            placeholder='Price'
+            value={userInput.price}
+            type='number'
           />
         </Form.Item>
 
@@ -153,12 +105,11 @@ const AddProduct = () => {
             htmlType='submit'
             className='login-form-button'
           >
-            Add Product
+            Add Category
           </Button>
           Or <Link to='/admin/dashboard'>Go back</Link>
         </Form.Item>
       </Form>
-      {JSON.stringify(formData)}
     </LayoutMain>
   );
 };

@@ -27,7 +27,7 @@ export const addProduct = (userId, token, product) => {
       'Content-Type': 'application/json',
       Authorization: `Bearer ${token}`
     },
-    body: JSON.stringify(product)
+    body: product
   })
     .then(response => {
       return response.json();
@@ -49,6 +49,16 @@ export const getCategory = categoryId => {
 
 export const getCategories = () => {
   return fetch(`${API}/category`, {
+    method: 'GET'
+  })
+    .then(response => {
+      return response.json();
+    })
+    .catch(err => console.log(err));
+};
+
+export const getProducts = () => {
+  return fetch(`${API}/product`, {
     method: 'GET'
   })
     .then(response => {
