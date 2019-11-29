@@ -1,10 +1,12 @@
-import React, { useState, useReducer } from 'react';
+import React, { useState, useReducer, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import LayoutMain from '../../components/core/LayoutMain';
 import { isAuthenticated } from '../../api/auth';
-import { addProduct } from '../../api/admin';
+import { addProduct, getCategories } from '../../api/admin';
+import ProductList from '../../components/admin/ProductList';
 
-import { Form, Input, Button, Alert } from 'antd';
+import { Form, Input, Button, Alert, Select, Card, Row, Col } from 'antd';
+const { Option } = Select;
 
 const AddProduct = () => {
   const [userInput, setUserInput] = useReducer(
@@ -18,8 +20,25 @@ const AddProduct = () => {
   );
   const [error, setError] = useState('');
   const [success, setSuccess] = useState(false);
+  const [categories, setCategories] = useState([]);
 
   const { user, token } = isAuthenticated();
+
+  // load categories and set form data
+  const init = () => {
+    getCategories().then(data => {
+      if (data.error) {
+        setError(data.error);
+      } else {
+        setCategories(data);
+        console.log(categories);
+      }
+    });
+  };
+
+  useEffect(() => {
+    init();
+  }, []);
 
   const handleChange = evt => {
     const { name, value } = evt.target;
@@ -82,13 +101,16 @@ const AddProduct = () => {
           />
         </Form.Item>
         <Form.Item>
-          <Input
-            name='category'
-            onChange={handleChange}
-            placeholder='Category'
-            value={userInput.category}
-          />
+          <Select name='category' placeholder='Select category'>
+            <Option value={(userInput.category = '5ddabffe3a7e38360a29f500')}>
+              Category 1
+            </Option>
+            <Option value={(userInput.category = '5ddac0013a7e38360a29f501')}>
+              Category 2
+            </Option>
+          </Select>
         </Form.Item>
+
         <Form.Item>
           <Input
             name='price'
@@ -105,11 +127,19 @@ const AddProduct = () => {
             htmlType='submit'
             className='login-form-button'
           >
-            Add Category
+            Add Product
           </Button>
+          <br />
           Or <Link to='/admin/dashboard'>Go back</Link>
         </Form.Item>
       </Form>
+      <Row>
+        <Col>
+          <Card title='Products' bordered={true}>
+            <ProductList />
+          </Card>
+        </Col>
+      </Row>
     </LayoutMain>
   );
 };

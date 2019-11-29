@@ -3,8 +3,9 @@ import { Link } from 'react-router-dom';
 import LayoutMain from '../../components/core/LayoutMain';
 import { isAuthenticated } from '../../api/auth';
 import { addCategory } from '../../api/admin';
+import CategoryList from '../../components/admin/CategoryList';
 
-import { Form, Input, Button, Alert } from 'antd';
+import { Form, Input, Button, Alert, Row, Col, Card } from 'antd';
 
 const AddCategory = () => {
   const [name, setName] = useState('');
@@ -70,9 +71,17 @@ const AddCategory = () => {
           >
             Add Category
           </Button>
+          <br />
           Or <Link to='/admin/dashboard'>Go back</Link>
         </Form.Item>
       </Form>
+      <Row>
+        <Col>
+          <Card title='Categories' bordered={true}>
+            <CategoryList />
+          </Card>
+        </Col>
+      </Row>
     </LayoutMain>
   );
 };

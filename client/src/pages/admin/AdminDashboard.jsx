@@ -24,9 +24,11 @@ const AdminDashboard = () => {
         </Col>
         <Col span={8}>
           <Card title='Admin Links' bordered={true}>
-            <Link to='/admin/create/category'>Create Category</Link>
+            <Link to='/admin/create/category'>Manage Categories</Link>
             <br />
-            <Link to='/admin/create/product'>Create Product</Link>
+            <Link to='/admin/create/product'>Manage Products</Link>
+            <br />
+            <Link to='#'>Manage Orders</Link>
           </Card>
         </Col>
       </Row>
