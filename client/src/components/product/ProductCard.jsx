@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 import { Card, Icon } from 'antd';
 
@@ -15,12 +16,14 @@ const ProductCard = ({ product }) => {
         />
       }
       actions={[
-        <Icon type='setting' key='setting' />,
-        <Icon type='edit' key='edit' />,
-        <Icon type='ellipsis' key='ellipsis' />
+        <button>Add to Cart</button>,
+        <Link to={`/product/${product._id}`}>View Product</Link>
       ]}
     >
-      <Meta title='Name' description='Description' />
+      <Meta
+        title={product.name}
+        description={product.description.substring(0, 100)}
+      />
     </Card>
   );
 };

@@ -1,14 +1,15 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import LayoutMain from '../../components/core/LayoutMain';
 import { isAuthenticated } from '../../api/auth';
-import { addCategory } from '../../api/admin';
+import { addCategory, getCategories } from '../../api/admin';
 import CategoryList from '../../components/admin/CategoryList';
 
-import { Form, Input, Button, Alert, Row, Col, Card } from 'antd';
+import { Form, Input, Button, Alert, Row, Col, Card, List } from 'antd';
 
 const AddCategory = () => {
   const [name, setName] = useState('');
+  const [categories, setCategories] = useState([]);
   const [error, setError] = useState(false);
   const [success, setSuccess] = useState(false);
 
@@ -34,6 +35,22 @@ const AddCategory = () => {
       }
     });
   };
+
+  // Load all Categories
+  const loadCategories = () => {
+    getCategories().then(data => {
+      console.log(data);
+      if (data.error) {
+        setError(data.error);
+      } else {
+        setCategories(data.data);
+      }
+    });
+  };
+
+  useEffect(() => {
+    loadCategories();
+  }, []);
 
   const showSuccess = () => (
     <Alert
@@ -78,7 +95,13 @@ const AddCategory = () => {
       <Row>
         <Col>
           <Card title='Categories' bordered={true}>
-            <CategoryList />
+            {categories.map((category, i) => {
+              return (
+                <List.Item key={i} actions={[<a>Edit</a>, <a>Delete</a>]}>
+                  <List.Item.Meta title={category.name} />
+                </List.Item>
+              );
+            })}
           </Card>
         </Col>
       </Row>

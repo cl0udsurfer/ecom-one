@@ -1,7 +1,7 @@
 const express = require('express');
 const router = express.Router({ mergeParams: true });
 
-const { protect } = require('../middleware/auth');
+const { adminProtect } = require('../middleware/adminAuth');
 
 const {
   getProducts,
@@ -14,12 +14,12 @@ const {
 router
   .route('/')
   .get(getProducts)
-  .post(protect, createProduct);
+  .post(adminProtect, createProduct);
 
 router
   .route('/:id')
   .get(getProduct)
-  .put(protect, updateProduct)
-  .delete(protect, removeProduct);
+  .put(adminProtect, updateProduct)
+  .delete(adminProtect, removeProduct);
 
 module.exports = router;

@@ -2,7 +2,7 @@ import React from 'react';
 
 import { List } from 'antd';
 
-const ProductList = () => {
+const ProductList = ({ product }) => {
   return (
     <List.Item
       actions={[
@@ -10,7 +10,7 @@ const ProductList = () => {
         <a key='list-loadmore-more'>Delete</a>
       ]}
     >
-      <List.Item.Meta title={<a href='#'>Name</a>} />
+      <List.Item.Meta title={product.name} />
     </List.Item>
   );
 };

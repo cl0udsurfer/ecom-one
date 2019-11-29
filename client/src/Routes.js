@@ -9,6 +9,8 @@ import PrivateRoute from './utils/PrivateRoute';
 import AdminRoute from './utils/AdminRoute';
 import AddCategory from './pages/admin/AddCategory';
 import AddProduct from './pages/admin/AddProduct';
+import Cart from './pages/user/Cart';
+import ProductPage from './pages/main/ProductPage';
 
 const Routes = () => {
   return (
@@ -16,11 +18,13 @@ const Routes = () => {
       <BrowserRouter>
         <Switch>
           <Route path='/' exact component={Home} />
+          <Route path='/product/:productId' exact component={ProductPage} />
           <PrivateRoute
             path='/user/dashboard'
             exact
             component={UserDashboard}
           />
+          <PrivateRoute path='/cart' exact component={Cart} />
           <AdminRoute
             path='/admin/dashboard'
             exact

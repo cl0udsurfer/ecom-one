@@ -49,6 +49,12 @@ const LayoutMain = ({
           )}
           {isAuthenticated() && (
             <Menu.Item>
+              <Link to='/cart'>Cart</Link>
+            </Menu.Item>
+          )}
+
+          {isAuthenticated() && (
+            <Menu.Item>
               <span onClick={() => logout()}>Signout</span>
             </Menu.Item>
           )}

@@ -2,10 +2,10 @@ import React, { useState, useReducer, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import LayoutMain from '../../components/core/LayoutMain';
 import { isAuthenticated } from '../../api/auth';
-import { addProduct, getCategories } from '../../api/admin';
+import { addProduct, getCategories, getProducts } from '../../api/admin';
 import ProductList from '../../components/admin/ProductList';
 
-import { Form, Input, Button, Alert, Select, Card, Row, Col } from 'antd';
+import { Form, Input, Button, Alert, Select, Card, Row, Col, List } from 'antd';
 const { Option } = Select;
 
 const AddProduct = () => {
@@ -21,17 +21,26 @@ const AddProduct = () => {
   const [error, setError] = useState('');
   const [success, setSuccess] = useState(false);
   const [categories, setCategories] = useState([]);
+  const [products, setProducts] = useState([]);
 
   const { user, token } = isAuthenticated();
 
   // load categories and set form data
   const init = () => {
     getCategories().then(data => {
+      console.log(data.data);
       if (data.error) {
         setError(data.error);
       } else {
-        setCategories(data);
-        console.log(categories);
+        setCategories(data.data);
+      }
+    });
+    getProducts().then(data => {
+      console.log(data.data);
+      if (data.error) {
+        setError(data.error);
+      } else {
+        setProducts(data.data);
       }
     });
   };
@@ -101,13 +110,15 @@ const AddProduct = () => {
           />
         </Form.Item>
         <Form.Item>
-          <Select name='category' placeholder='Select category'>
-            <Option value={(userInput.category = '5ddabffe3a7e38360a29f500')}>
-              Category 1
-            </Option>
-            <Option value={(userInput.category = '5ddac0013a7e38360a29f501')}>
-              Category 2
-            </Option>
+          <Select placeholder='Select category'>
+            {categories &&
+              categories.map((category, i) => {
+                return (
+                  <Option name='category' key={i} value={category.id}>
+                    {category.name}
+                  </Option>
+                );
+              })}
           </Select>
         </Form.Item>
 
@@ -136,7 +147,10 @@ const AddProduct = () => {
       <Row>
         <Col>
           <Card title='Products' bordered={true}>
-            <ProductList />
+            {products &&
+              products.map((product, i) => {
+                return <ProductList key={i} product={product} />;
+              })}
           </Card>
         </Col>
       </Row>
