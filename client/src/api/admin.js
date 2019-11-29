@@ -18,6 +18,40 @@ export const addCategory = (userId, token, category) => {
     });
 };
 
+export const removeCategory = (token, categoryId) => {
+  return fetch(`${API}/category/${categoryId}`, {
+    method: 'DELETE',
+    headers: {
+      Accept: 'application/json',
+      'Content-Type': 'application/json',
+      Authorization: `Bearer ${token}`
+    }
+  })
+    .then(response => {
+      return response.json();
+    })
+    .catch(err => {
+      console.log(err);
+    });
+};
+
+export const removeProduct = (token, productId) => {
+  return fetch(`${API}/product/${productId}`, {
+    method: 'DELETE',
+    headers: {
+      Accept: 'application/json',
+      'Content-Type': 'application/json',
+      Authorization: `Bearer ${token}`
+    }
+  })
+    .then(response => {
+      return response.json();
+    })
+    .catch(err => {
+      console.log(err);
+    });
+};
+
 export const addProduct = (userId, token, product) => {
   console.log(product);
   return fetch(`${API}/product`, {

@@ -32,6 +32,7 @@ const AddCategory = () => {
         setName('');
         setError('');
         setSuccess(true);
+        window.location.reload();
       }
     });
   };
@@ -96,11 +97,7 @@ const AddCategory = () => {
         <Col>
           <Card title='Categories' bordered={true}>
             {categories.map((category, i) => {
-              return (
-                <List.Item key={i} actions={[<a>Edit</a>, <a>Delete</a>]}>
-                  <List.Item.Meta title={category.name} />
-                </List.Item>
-              );
+              return <CategoryList key={i} category={category} />;
             })}
           </Card>
         </Col>

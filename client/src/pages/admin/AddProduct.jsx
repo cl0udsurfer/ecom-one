@@ -65,6 +65,7 @@ const AddProduct = () => {
       } else {
         setError('');
         setSuccess(true);
+        window.location.reload();
       }
     });
   };

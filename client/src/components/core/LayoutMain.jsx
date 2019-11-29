@@ -1,4 +1,4 @@
-import React, { Fragment } from 'react';
+import React from 'react';
 import { Link, withRouter, Redirect } from 'react-router-dom';
 import { Layout, Menu, Breadcrumb } from 'antd';
 
@@ -26,6 +26,9 @@ const LayoutMain = ({
         >
           <Menu.Item>
             <Link to='/'>Home</Link>
+          </Menu.Item>
+          <Menu.Item>
+            <Link to='/shop'>Shop</Link>
           </Menu.Item>
           {isAuthenticated() && isAuthenticated().user.role === 1 && (
             <Menu.Item>

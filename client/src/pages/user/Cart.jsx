@@ -1,17 +1,41 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import LayoutMain from '../../components/core/LayoutMain';
+import CartList from '../../components/cart/CartList';
 
 import { Card, Row, Col } from 'antd';
-import { isAuthenticated } from '../../api/auth';
+
+import { getCart } from '../../api/cart';
 
 const Cart = () => {
+  const [items, setItems] = useState([]);
+
+  useEffect(() => {
+    let cartItems = getCart();
+    setItems(cartItems);
+    console.log(cartItems);
+  }, []);
+
+  const showItems = cartItems => {
+    console.log(cartItems);
+    return (
+      <div>
+        <h2>Your cart has {`${items.length}`} items</h2>
+      </div>
+    );
+  };
+
   return (
     <LayoutMain title='User Dashboard' description='User Dashboard'>
       <p>Cart</p>
       <Row gutter={16}>
         <Col span={10}>
           <Card title='Your Cart' bordered={true}>
-            Products
+            {showItems()}
+            <div>
+              {items.map((item, i) => {
+                return <CartList key={i} item={item} />;
+              })}
+            </div>
           </Card>
         </Col>
         <Col span={8}>
