@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import LayoutMain from '../../components/core/LayoutMain';
+import { Link } from 'react-router-dom';
 
 import { Card, Row, Col } from 'antd';
 import { isAuthenticated } from '../../api/auth';
@@ -31,13 +32,29 @@ const ProductPage = props => {
       <Row gutter={16}>
         <Col span={10}>
           <Card title='Product Page' bordered={true}>
+            Productimage
+            <br />
             Productname: {product.name}
+            <br />
+            Description: {product.description}
           </Card>
         </Col>
         <Col span={8}>
-          <Card title='Checkout' bordered={true}>
-            Add to Cart
-          </Card>
+          {!isAuthenticated() && (
+            <Card title='Options' bordered={true}>
+              Please <Link to='/signin'>Signin</Link> to add this Product to
+              your Cart
+            </Card>
+          )}
+          {isAuthenticated() && (
+            <Card title='Options' bordered={true}>
+              <button>Add to Cart</button>
+              <br />
+              Or
+              <br />
+              <Link to='/cart'>View Cart</Link>
+            </Card>
+          )}
         </Col>
       </Row>
     </LayoutMain>

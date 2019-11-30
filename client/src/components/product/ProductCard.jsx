@@ -4,15 +4,22 @@ import { Link, Redirect } from 'react-router-dom';
 import { Card, Icon } from 'antd';
 
 import { addItem } from '../../api/cart';
+import { isAuthenticated } from '../../api/auth';
 
 const { Meta } = Card;
 
 const ProductCard = ({ product }) => {
   const [redirect, setRedirect] = useState(false);
 
+  const redirectToSignin = () => <Redirect to='/signin' />;
+
   const addToCart = () => {
     console.log('added');
-    addItem(product, setRedirect(true));
+    if (!isAuthenticated()) {
+      redirectToSignin();
+    } else {
+      addItem(product, setRedirect(true));
+    }
   };
   return (
     <Card

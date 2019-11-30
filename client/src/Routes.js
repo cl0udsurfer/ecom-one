@@ -21,6 +21,8 @@ const Routes = () => {
           <Route path='/' exact component={Home} />
           <Route path='/shop' exact component={ShopPage} />
           <Route path='/product/:productId' exact component={ProductPage} />
+          <PrivateRoute path='/checkout' exact component={Cart} />
+          <PrivateRoute path='/cart' exact component={Cart} />
           <PrivateRoute
             path='/user/dashboard'
             exact

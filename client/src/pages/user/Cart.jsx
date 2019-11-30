@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { Link } from 'react-router-dom';
 import LayoutMain from '../../components/core/LayoutMain';
 import CartList from '../../components/cart/CartList';
 
@@ -40,7 +41,7 @@ const Cart = () => {
         </Col>
         <Col span={8}>
           <Card title='Checkout' bordered={true}>
-            Proceed to Checkout
+            <Link to='/checkout'>Continue to Checkout</Link>
           </Card>
         </Col>
       </Row>
