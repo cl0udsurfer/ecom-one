@@ -5,7 +5,7 @@ import { isAuthenticated } from '../../api/auth';
 import { addCategory, getCategories } from '../../api/admin';
 import CategoryList from '../../components/admin/CategoryList';
 
-import { Form, Input, Button, Alert, Row, Col, Card, List } from 'antd';
+import { Form, Input, Button, Alert, Row, Col, Card } from 'antd';
 
 const AddCategory = () => {
   const [name, setName] = useState('');

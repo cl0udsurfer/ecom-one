@@ -28,6 +28,7 @@ const ShopPage = () => {
   return (
     <LayoutMain title='Shop' description='Shop'>
       <p>Shop</p>
+      <p>SEARCH BAR TO DO!</p>
       <Row>
         {products.map((product, i) => (
           <Col span={6}>

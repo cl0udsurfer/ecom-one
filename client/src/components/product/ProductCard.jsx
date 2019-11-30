@@ -1,7 +1,7 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { Link, Redirect } from 'react-router-dom';
 
-import { Card, Icon } from 'antd';
+import { Card } from 'antd';
 
 import { addItem } from '../../api/cart';
 import { isAuthenticated } from '../../api/auth';
@@ -23,7 +23,7 @@ const ProductCard = ({ product }) => {
   };
   return (
     <Card
-      style={{ width: 300 }}
+      style={{ width: 300, margin: 40 }}
       cover={
         <img
           alt='example'

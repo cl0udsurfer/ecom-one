@@ -27,7 +27,7 @@ const Cart = () => {
 
   return (
     <LayoutMain title='User Dashboard' description='User Dashboard'>
-      <p>Cart</p>
+      <h1>Cart</h1>
       <Row gutter={16}>
         <Col span={10}>
           <Card title='Your Cart' bordered={true}>

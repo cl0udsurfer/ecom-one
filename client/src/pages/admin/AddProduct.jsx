@@ -5,10 +5,10 @@ import { isAuthenticated } from '../../api/auth';
 import { addProduct, getCategories, getProducts } from '../../api/admin';
 import ProductList from '../../components/admin/ProductList';
 
-import { Form, Input, Button, Alert, Select, Card, Row, Col, List } from 'antd';
-const { Option } = Select;
+import { Form, Input, Button, Alert, Card, Row, Col, Radio } from 'antd';
 
 const AddProduct = () => {
+  const [categoryValue, setCategoryValue] = useState('');
   const [userInput, setUserInput] = useReducer(
     (state, newState) => ({ ...state, ...newState }),
     {
@@ -22,6 +22,12 @@ const AddProduct = () => {
   const [success, setSuccess] = useState(false);
   const [categories, setCategories] = useState([]);
   const [products, setProducts] = useState([]);
+
+  const radioStyle = {
+    display: 'block',
+    height: '30px',
+    lineHeight: '30px'
+  };
 
   const { user, token } = isAuthenticated();
 
@@ -51,6 +57,8 @@ const AddProduct = () => {
 
   const handleChange = evt => {
     const { name, value } = evt.target;
+
+    console.log(name, value);
 
     setUserInput({ [name]: value });
   };
@@ -88,6 +96,12 @@ const AddProduct = () => {
     />
   );
 
+  const selectCategory = e => {
+    setCategoryValue(e.target.value);
+    console.log(e.target.value);
+    setUserInput({ category: categoryValue });
+  };
+
   return (
     <LayoutMain title='Add Product' description='Add Product'>
       <p>Add a new Product</p>
@@ -111,16 +125,17 @@ const AddProduct = () => {
           />
         </Form.Item>
         <Form.Item>
-          <Select placeholder='Select category'>
-            {categories &&
-              categories.map((category, i) => {
-                return (
-                  <Option name='category' key={i} value={category.id}>
-                    {category.name}
-                  </Option>
-                );
-              })}
-          </Select>
+          <Radio.Group
+            name='category'
+            onChange={selectCategory}
+            value={categoryValue}
+          >
+            {categories.map((c, i) => (
+              <Radio key={i} style={radioStyle} value={c.id}>
+                {c.name}
+              </Radio>
+            ))}
+          </Radio.Group>
         </Form.Item>
 
         <Form.Item>

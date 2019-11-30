@@ -11,6 +11,7 @@ import AddCategory from './pages/admin/AddCategory';
 import AddProduct from './pages/admin/AddProduct';
 import Cart from './pages/user/Cart';
 import ProductPage from './pages/main/ProductPage';
+import CategoryPage from './pages/main/CategoryPage';
 import ShopPage from './pages/main/ShopPage';
 
 const Routes = () => {
@@ -21,6 +22,7 @@ const Routes = () => {
           <Route path='/' exact component={Home} />
           <Route path='/shop' exact component={ShopPage} />
           <Route path='/product/:productId' exact component={ProductPage} />
+          <Route path='/category/:categoryId' exact component={CategoryPage} />
           <PrivateRoute path='/checkout' exact component={Cart} />
           <PrivateRoute path='/cart' exact component={Cart} />
           <PrivateRoute
