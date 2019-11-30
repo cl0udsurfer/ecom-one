@@ -53,7 +53,6 @@ export const removeProduct = (token, productId) => {
 };
 
 export const addProduct = (userId, token, product) => {
-  console.log(product);
   return fetch(`${API}/product`, {
     method: 'POST',
     headers: {
@@ -64,6 +63,7 @@ export const addProduct = (userId, token, product) => {
     body: product
   })
     .then(response => {
+      console.log(response);
       return response.json();
     })
     .catch(err => {
@@ -93,6 +93,16 @@ export const getCategories = () => {
 
 export const getProducts = () => {
   return fetch(`${API}/product`, {
+    method: 'GET'
+  })
+    .then(response => {
+      return response.json();
+    })
+    .catch(err => console.log(err));
+};
+
+export const getProductsByCategory = categoryId => {
+  return fetch(`${API}/category/${categoryId}/product`, {
     method: 'GET'
   })
     .then(response => {

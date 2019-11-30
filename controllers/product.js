@@ -8,16 +8,30 @@ const Category = require('../models/Category');
 // @route   GET /api/v1/category/:categoryId/product
 // @access  Public
 exports.getProducts = asyncHandler(async (req, res, next) => {
-  const products = await Product.find().populate({
-    path: 'category',
-    select: 'name'
-  });
+  if (req.params.categoryId) {
+    const products = await Product.find({
+      category: req.params.categoryId
+    }).populate({
+      path: 'category',
+      select: 'name'
+    });
 
-  res.status(200).json({
-    success: true,
-    count: products.length,
-    data: products
-  });
+    res.status(200).json({
+      success: true,
+      count: products.length,
+      data: products
+    });
+  } else {
+    const products = await Product.find().populate({
+      path: 'category',
+      select: 'name'
+    });
+    res.status(200).json({
+      success: true,
+      count: products.length,
+      data: products
+    });
+  }
 });
 
 // @desc    Get single Product
