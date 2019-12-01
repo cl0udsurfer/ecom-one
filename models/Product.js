@@ -37,7 +37,6 @@ const ProductSchema = new mongoose.Schema({
     type: Number,
     default: 0
   },
-  // Photo Upload Method überarbeiten!
   photo: {
     data: Buffer,
     contentType: String

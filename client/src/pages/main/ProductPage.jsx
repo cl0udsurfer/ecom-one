@@ -9,7 +9,6 @@ import AddToCartButton from '../../components/cart/AddToCartButton';
 
 const ProductPage = props => {
   const [product, setProduct] = useState({});
-  const [error, setError] = useState(false);
 
   const loadSingleProduct = productId => {
     getProduct(productId).then(data => {

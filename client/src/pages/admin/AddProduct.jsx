@@ -1,4 +1,4 @@
-import React, { useState, useReducer, useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import LayoutMain from '../../components/core/LayoutMain';
 import { isAuthenticated } from '../../api/auth';
@@ -8,20 +8,20 @@ import ProductList from '../../components/admin/ProductList';
 import { Form, Input, Button, Alert, Card, Row, Col, Radio } from 'antd';
 
 const AddProduct = () => {
-  const [categoryValue, setCategoryValue] = useState('');
-  const [userInput, setUserInput] = useReducer(
-    (state, newState) => ({ ...state, ...newState }),
-    {
-      name: '',
-      description: '',
-      category: '',
-      price: ''
-    }
-  );
-  const [error, setError] = useState('');
-  const [success, setSuccess] = useState(false);
-  const [categories, setCategories] = useState([]);
   const [products, setProducts] = useState([]);
+  const [values, setValues] = useState({
+    name: '',
+    description: '',
+    price: '',
+    categories: [],
+    category: '',
+    shipping: '',
+    quantity: '',
+    photo: '',
+    loading: false,
+    error: '',
+    formData: ''
+  });
 
   const radioStyle = {
     display: 'block',
@@ -31,20 +31,36 @@ const AddProduct = () => {
 
   const { user, token } = isAuthenticated();
 
+  const {
+    name,
+    description,
+    price,
+    categories,
+    category,
+    quantity,
+    loading,
+    error,
+    formData
+  } = values;
+
   // load categories and set form data
   const init = () => {
     getCategories().then(data => {
       console.log(data.data);
       if (data.error) {
-        setError(data.error);
+        setValues({ ...values, error: data.error });
       } else {
-        setCategories(data.data);
+        setValues({
+          ...values,
+          categories: data.data,
+          formData: new FormData()
+        });
       }
     });
     getProducts().then(data => {
       console.log(data.data);
       if (data.error) {
-        setError(data.error);
+        setValues({ ...values, error: data.error });
       } else {
         setProducts(data.data);
       }
@@ -55,24 +71,29 @@ const AddProduct = () => {
     init();
   }, []);
 
-  const handleChange = evt => {
-    const { name, value } = evt.target;
-
-    console.log(name, value);
-
-    setUserInput({ [name]: value });
+  const handleChange = name => event => {
+    const value = name === 'photo' ? event.target.files[0] : event.target.value;
+    formData.set(name, value);
+    setValues({ ...values, [name]: value });
   };
 
-  const clickSubmit = e => {
-    e.preventDefault();
-    console.log(JSON.stringify(userInput));
-    // make request to api to create product
-    addProduct(user._id, token, JSON.stringify(userInput)).then(data => {
+  const clickSubmit = event => {
+    event.preventDefault();
+    setValues({ ...values, error: '', loading: true });
+
+    addProduct(user._id, token, formData).then(data => {
       if (data.error) {
-        setError(data.error);
+        setValues({ ...values, error: data.error });
       } else {
-        setError('');
-        setSuccess(true);
+        setValues({
+          ...values,
+          name: '',
+          description: '',
+          photo: '',
+          price: '',
+          quantity: '',
+          createdProduct: data.name
+        });
         window.location.reload();
       }
     });
@@ -83,7 +104,7 @@ const AddProduct = () => {
       message='Product added successfully'
       type='success'
       showIcon
-      style={{ display: success ? '' : 'none' }}
+      style={{ display: loading ? '' : 'none' }}
     />
   );
 
@@ -96,54 +117,65 @@ const AddProduct = () => {
     />
   );
 
-  const selectCategory = e => {
-    setCategoryValue(e.target.value);
-    console.log(e.target.value);
-    setUserInput({ category: categoryValue });
-  };
-
   return (
     <LayoutMain title='Add Product' description='Add Product'>
       <p>Add a new Product</p>
       {showError()}
       {showSuccess()}
       <Form className='form' onSubmit={clickSubmit}>
+        <Form.Item extra='Max Filesize:' wrapperCol={{ span: 12 }}>
+          <div>Upload Photo</div>
+          <Input
+            type='file'
+            name='photo'
+            listType='picture'
+            onChange={handleChange('photo')}
+            accept='image/*'
+          />
+        </Form.Item>
         <Form.Item>
           <Input
             name='name'
-            onChange={handleChange}
+            onChange={handleChange('name')}
             placeholder='Name'
-            value={userInput.name}
+            value={name}
           />
         </Form.Item>
         <Form.Item>
           <Input
             name='description'
-            onChange={handleChange}
+            onChange={handleChange('description')}
             placeholder='Description'
-            value={userInput.description}
+            value={description}
           />
         </Form.Item>
         <Form.Item>
-          <Radio.Group
-            name='category'
-            onChange={selectCategory}
-            value={categoryValue}
-          >
-            {categories.map((c, i) => (
-              <Radio key={i} style={radioStyle} value={c.id}>
-                {c.name}
-              </Radio>
-            ))}
+          <p>Select Category:</p>
+          <Radio.Group name='category' onChange={handleChange('category')}>
+            {categories &&
+              categories.map((c, i) => (
+                <Radio key={i} style={radioStyle} value={c.id}>
+                  {c.name}
+                </Radio>
+              ))}
           </Radio.Group>
         </Form.Item>
 
         <Form.Item>
           <Input
             name='price'
-            onChange={handleChange}
+            onChange={handleChange('price')}
             placeholder='Price'
-            value={userInput.price}
+            value={price}
+            type='number'
+          />
+        </Form.Item>
+        <Form.Item>
+          <Input
+            name='quantity'
+            onChange={handleChange('quantity')}
+            placeholder='Quantity'
+            value={quantity}
             type='number'
           />
         </Form.Item>

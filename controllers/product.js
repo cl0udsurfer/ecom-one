@@ -2,6 +2,8 @@ const ErrorResponse = require('../utils/errorResponse');
 const asyncHandler = require('../middleware/async');
 const Product = require('../models/Product');
 const Category = require('../models/Category');
+const fs = require('fs');
+const formidable = require('formidable');
 
 // @desc    Get all Products
 // @route   GET /api/v1/product
@@ -59,11 +61,55 @@ exports.getProduct = asyncHandler(async (req, res, next) => {
 // @route   POST /api/v1/category/:categoryId/product
 // @access  Private
 exports.createProduct = asyncHandler(async (req, res, next) => {
-  const product = await Product.create(req.body);
+  /* const product = await Product.create(req.body);
 
   res.status(200).json({
     success: true,
     data: product
+  });
+  */
+  let form = new formidable.IncomingForm();
+  form.keepExtensions = true;
+  form.parse(req, (err, fields, files) => {
+    if (err) {
+      return res.status(400).json({
+        error: 'Image could not be uploaded'
+      });
+    }
+    // check for all fields
+    const { name, description, price, category } = fields;
+
+    if (!name || !description || !price || !category) {
+      return res.status(400).json({
+        error: 'All fields are required'
+      });
+    }
+
+    let product = new Product(fields);
+
+    // 1kb = 1000
+    // 1mb = 1000000
+
+    if (files.photo) {
+      // console.log("FILES PHOTO: ", files.photo);
+      if (files.photo.size > 1000000) {
+        return res.status(400).json({
+          error: 'Image should be less than 1mb in size'
+        });
+      }
+      product.photo.data = fs.readFileSync(files.photo.path);
+      product.photo.contentType = files.photo.type;
+    }
+
+    product.save((err, result) => {
+      if (err) {
+        console.log('PRODUCT CREATE ERROR ', err);
+        return res.status(400).json({
+          error: err
+        });
+      }
+      res.json({ success: true, result });
+    });
   });
 });
 
