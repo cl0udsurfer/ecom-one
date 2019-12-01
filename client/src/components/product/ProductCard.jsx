@@ -5,22 +5,13 @@ import { Card } from 'antd';
 
 import { addItem } from '../../api/cart';
 import { isAuthenticated } from '../../api/auth';
+import AddToCartButton from '../cart/AddToCartButton';
 
 const { Meta } = Card;
 
 const ProductCard = ({ product }) => {
   const [redirect, setRedirect] = useState(false);
 
-  const redirectToSignin = () => <Redirect to='/signin' />;
-
-  const addToCart = () => {
-    console.log('added');
-    if (!isAuthenticated()) {
-      redirectToSignin();
-    } else {
-      addItem(product, setRedirect(true));
-    }
-  };
   return (
     <Card
       style={{ width: 300, margin: 40 }}
@@ -31,7 +22,7 @@ const ProductCard = ({ product }) => {
         />
       }
       actions={[
-        <button onClick={addToCart}>Add to Cart</button>,
+        <AddToCartButton product={product} />,
         <Link to={`/product/${product._id}`}>View Product</Link>
       ]}
     >

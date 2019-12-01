@@ -5,6 +5,7 @@ import { Link } from 'react-router-dom';
 import { Card, Row, Col } from 'antd';
 import { isAuthenticated } from '../../api/auth';
 import { getProduct } from '../../api/admin';
+import AddToCartButton from '../../components/cart/AddToCartButton';
 
 const ProductPage = props => {
   const [product, setProduct] = useState({});
@@ -48,7 +49,7 @@ const ProductPage = props => {
           )}
           {isAuthenticated() && (
             <Card title='Options' bordered={true}>
-              <button>Add to Cart</button>
+              <AddToCartButton product={product} />
               <br />
               Or
               <br />
