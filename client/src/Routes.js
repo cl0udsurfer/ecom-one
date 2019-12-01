@@ -13,6 +13,7 @@ import Cart from './pages/user/Cart';
 import ProductPage from './pages/main/ProductPage';
 import CategoryPage from './pages/main/CategoryPage';
 import ShopPage from './pages/main/ShopPage';
+import CheckoutPage from './pages/main/CheckoutPage';
 
 const Routes = () => {
   return (
@@ -23,7 +24,7 @@ const Routes = () => {
           <Route path='/shop' exact component={ShopPage} />
           <Route path='/product/:productId' exact component={ProductPage} />
           <Route path='/category/:categoryId' exact component={CategoryPage} />
-          <PrivateRoute path='/checkout' exact component={Cart} />
+          <PrivateRoute path='/checkout' exact component={CheckoutPage} />
           <PrivateRoute path='/cart' exact component={Cart} />
           <PrivateRoute
             path='/user/dashboard'

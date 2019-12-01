@@ -5,6 +5,7 @@ import { getProducts } from '../../api/admin';
 import { Row, Col } from 'antd';
 
 import ProductCard from '../../components/product/ProductCard';
+import Searchbar from '../../components/core/Searchbar';
 
 const ShopPage = () => {
   const [products, setProducts] = useState([]);
@@ -27,8 +28,7 @@ const ShopPage = () => {
 
   return (
     <LayoutMain title='Shop' description='Shop'>
-      <p>Shop</p>
-      <p>SEARCH BAR TO DO!</p>
+      <h1>Shop</h1>
       <Row>
         {products.map((product, i) => (
           <Col span={6}>
