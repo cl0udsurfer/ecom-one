@@ -33,10 +33,19 @@ const OrderSchema = new mongoose.Schema({
     required: true,
     maxlength: 20
   },
+  payment: {
+    type: Boolean,
+    required: true,
+    default: false
+  },
   user: {
     type: mongoose.Schema.ObjectId,
     ref: 'User',
     required: true
+  },
+  orderedProducts: {
+    type: Array,
+    default: []
   }
 });
 

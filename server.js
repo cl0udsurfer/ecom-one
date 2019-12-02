@@ -28,11 +28,15 @@ connectDB();
 const auth = require('./routes/auth');
 const category = require('./routes/category');
 const product = require('./routes/product');
+const order = require('./routes/order');
+const user = require('./routes/user');
 
 // Mount Routers
 app.use('/api/v1/auth', auth);
 app.use('/api/v1/category', category);
 app.use('/api/v1/product', product);
+app.use('/api/v1/orders', order);
+app.use('/api/v1/user', user);
 
 // Errorhandler Middleware
 app.use(errorHandler);
