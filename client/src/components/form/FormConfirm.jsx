@@ -1,4 +1,5 @@
 import React, { Fragment } from 'react';
+import CartList from '../../components/cart/CartList';
 
 import { Card, Button } from 'antd';
 
@@ -18,6 +19,16 @@ const FormConfirm = ({ values, prevStep }) => {
         City: {values.city}
         <br />
         State: {values.state}
+        <br />
+        <br />
+        <br />
+        <h3>Products</h3>
+        {values.cartItems.map(c => (
+          <CartList item={c} />
+        ))}
+        <br />
+        <br />
+        Total: {values.total}€
       </Card>
       <Button
         onClick={prevStep}
