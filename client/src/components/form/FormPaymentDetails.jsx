@@ -1,11 +1,17 @@
 import React, { Fragment } from 'react';
+import DropIn from 'braintree-web-drop-in-react';
+import { Form, Button } from 'antd';
 
-import { Form, Input, Button } from 'antd';
-
-const FormPaymentDetails = ({ nextStep, prevStep }) => {
+const FormPaymentDetails = ({ values, nextStep, prevStep }) => {
   return (
     <Fragment>
       <h2>Payment</h2>
+      <DropIn
+        options={{
+          authorization: values.braintreeClientToken
+        }}
+        onInstance={instance => (values.instance = instance)}
+      />
       <Form.Item>
         <Button
           onClick={prevStep}

@@ -6,7 +6,6 @@ import { Card, Button } from 'antd';
 const FormConfirm = ({ values, prevStep }) => {
   return (
     <Fragment>
-      <h2>Confirm</h2>
       <Card title='Confirm Information' bordered={true}>
         First Name: {values.firstName}
         <br />
@@ -37,6 +36,9 @@ const FormConfirm = ({ values, prevStep }) => {
         className='login-form-button'
       >
         Go Back
+      </Button>
+      <Button type='primary' htmlType='submit' className='login-form-button'>
+        Confirm
       </Button>
     </Fragment>
   );

@@ -1,11 +1,30 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, Fragment } from 'react';
 import FormPersonalDetails from './FormPersonalDetails';
 import FormPaymentDetails from './FormPaymentDetails';
 import FormConfirm from './FormConfirm';
 
 import { getCart, itemTotal } from '../../api/cart';
+import { isAuthenticated } from '../../api/auth';
+import {
+  getBraintreeClientToken,
+  processPayment,
+  createOrder
+} from '../../api/user';
 
 const CheckoutForm = () => {
+  const userId = isAuthenticated() && isAuthenticated().user._id;
+  const token = isAuthenticated() && isAuthenticated().token;
+
+  const getToken = (userId, token) => {
+    getBraintreeClientToken(userId, token).then(data => {
+      if (data.error) {
+        setValues({ ...values, error: data.error });
+      } else {
+        setValues({ ...values, braintreeClientToken: data.clientToken });
+      }
+    });
+  };
+
   const [values, setValues] = useState({
     step: 1,
     firstName: '',
@@ -15,7 +34,12 @@ const CheckoutForm = () => {
     city: '',
     state: '',
     cartItems: [],
-    total: ''
+    instance: {},
+    total: '',
+    error: '',
+    loading: false,
+    success: false,
+    braintreeClientToken: ''
   });
 
   const {
@@ -27,7 +51,11 @@ const CheckoutForm = () => {
     city,
     state,
     cartItems,
-    total
+    total,
+    error,
+    success,
+    loading,
+    braintreeClientToken
   } = values;
 
   const getTotal = () => {
@@ -37,6 +65,7 @@ const CheckoutForm = () => {
   };
 
   useEffect(() => {
+    getToken(userId, token);
     let total = getTotal();
     let cart = getCart();
     setValues({ ...values, cartItems: cart, total: total });
@@ -59,16 +88,24 @@ const CheckoutForm = () => {
   switch (step) {
     case 1:
       return (
-        <FormPersonalDetails
-          nextStep={nextStep}
-          prevStep={prevStep}
-          handleChange={handleChange}
-          values={values}
-        />
+        <Fragment>
+          <FormPersonalDetails
+            nextStep={nextStep}
+            prevStep={prevStep}
+            handleChange={handleChange}
+            values={values}
+          />
+        </Fragment>
       );
 
     case 2:
-      return <FormPaymentDetails nextStep={nextStep} prevStep={prevStep} />;
+      return (
+        <FormPaymentDetails
+          values={values}
+          nextStep={nextStep}
+          prevStep={prevStep}
+        />
+      );
     case 3:
       return <FormConfirm prevStep={prevStep} values={values} />;
     case 4:

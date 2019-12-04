@@ -16,3 +16,18 @@ exports.getUsers = asyncHandler(async (req, res, next) => {
     data: users
   });
 });
+
+// @desc    Get all Users
+// @route   GET /api/v1/user/:id
+// @access  Private
+exports.getUserById = asyncHandler(async (req, res, next) => {
+  const user = await User.findById(req.params.id).populate({
+    path: 'order',
+    select: 'id'
+  });
+  res.status(200).json({
+    success: true,
+    count: user.length,
+    data: user
+  });
+});
