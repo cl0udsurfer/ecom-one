@@ -47,8 +47,8 @@ export const processPayment = (userId, token, paymentData) => {
 };
 
 // TO DO: ADAPT!
-export const createOrder = (userId, token, createOrderData) => {
-  return fetch(`${API}/order/create/${userId}`, {
+export const createOrder = (token, createOrderData) => {
+  return fetch(`${API}/order/`, {
     method: 'POST',
     headers: {
       Accept: 'application/json',
