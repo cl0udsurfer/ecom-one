@@ -229,10 +229,12 @@ const ManageProducts = () => {
                           <button
                             id='contact-submit'
                             type='submit'
-                            class='btn btn-primary btn-rounded'
+                            class='btn btn-primary btn-rounded mb-2'
                           >
                             Add Product
                           </button>
+                          <br />
+                          Or <Link to='/admin/dashboard'>Go back</Link>
                         </div>
                       </form>
                     </div>

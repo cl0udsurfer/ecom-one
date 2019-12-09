@@ -9,6 +9,7 @@ import CartPage from './pages/core/CartPage';
 import AdminDashboard from './pages/admin/AdminDashboard';
 import UserDashboard from './pages/user/UserDashboard';
 import ManageProducts from './pages/admin/ManageProducts';
+import ManageCategories from './pages/admin/ManageCategories';
 
 const Routes = () => {
   return (
@@ -24,6 +25,11 @@ const Routes = () => {
             path='/admin/manage/products'
             exact
             component={ManageProducts}
+          />
+          <AdminRoute
+            path='/admin/manage/categories'
+            exact
+            component={ManageCategories}
           />
           <PrivateRoute
             path='/user/dashboard'
