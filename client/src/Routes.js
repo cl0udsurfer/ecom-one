@@ -6,12 +6,30 @@ import AdminRoute from './utils/AdminRoute';
 import LoginPage from './pages/auth/LoginPage';
 import RegisterPage from './pages/auth/RegisterPage';
 import CartPage from './pages/core/CartPage';
+import AdminDashboard from './pages/admin/AdminDashboard';
+import UserDashboard from './pages/user/UserDashboard';
+import ManageProducts from './pages/admin/ManageProducts';
 
 const Routes = () => {
   return (
     <div>
       <BrowserRouter>
         <Switch>
+          <AdminRoute
+            path='/admin/dashboard'
+            exact
+            component={AdminDashboard}
+          />
+          <AdminRoute
+            path='/admin/manage/products'
+            exact
+            component={ManageProducts}
+          />
+          <PrivateRoute
+            path='/user/dashboard'
+            exact
+            component={UserDashboard}
+          />
           <Route path='/' exact component={Home} />
           <Route path='/login' exact component={LoginPage} />
           <Route path='/register' exact component={RegisterPage} />

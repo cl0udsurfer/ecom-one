@@ -1,11 +1,31 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 
 import { logout, isAuthenticated } from '../../api/auth';
+import { getCategories } from '../../api/admin';
 
-import '../../assets/css/style.css';
+import '../../assets/css/navbar.css';
 
 const Navbar = () => {
+  const [categories, setCategories] = useState([]);
+  const [error, setError] = useState('');
+
+  // Load all Categories
+  const loadCategories = () => {
+    getCategories().then(data => {
+      console.log(data);
+      if (data.error) {
+        setError(data.error);
+      } else {
+        setCategories(data.data);
+      }
+    });
+  };
+
+  useEffect(() => {
+    loadCategories();
+  }, []);
+
   return (
     <header className='header-global'>
       <nav
@@ -75,36 +95,18 @@ const Navbar = () => {
                 </a>
                 <div className='dropdown-menu dropdown-menu-xl'>
                   <div className='dropdown-menu-inner'>
-                    <a
-                      href='/leistungen/vertrieb-und-consulting'
-                      className='media d-flex align-items-center'
-                    >
-                      <div className='media-body ml-3'>
-                        <h6 className='heading text-primary mb-md-1'>
-                          Category 1
-                        </h6>
-                      </div>
-                    </a>
-                    <a
-                      href='/leistungen/planung-und-simulation'
-                      className='media d-flex align-items-center'
-                    >
-                      <div className='media-body ml-3'>
-                        <h6 className='heading text-primary mb-md-1'>
-                          Category 2
-                        </h6>
-                      </div>
-                    </a>
-                    <a
-                      href='/leistungen/projektmanagement-und-realisierung'
-                      className='media d-flex align-items-center'
-                    >
-                      <div className='media-body ml-3'>
-                        <h6 className='heading text-primary mb-md-1'>
-                          Category 3
-                        </h6>
-                      </div>
-                    </a>
+                    {categories.map((c, i) => (
+                      <Link
+                        to={`/category/${c._id}`}
+                        className='media d-flex align-items-center'
+                      >
+                        <div className='media-body ml-3'>
+                          <h6 className='heading text-primary mb-md-1'>
+                            {c.name}
+                          </h6>
+                        </div>
+                      </Link>
+                    ))}
                   </div>
                 </div>
               </li>
@@ -147,22 +149,29 @@ const Navbar = () => {
                       </a>
                     </li>
                   )}
-                  {isAuthenticated() && (
+                  {isAuthenticated() && isAuthenticated().user.role === 0 && (
                     <li>
-                      <a className='dropdown-item' href='/'>
+                      <Link className='dropdown-item' to='/user/dashboard'>
                         Dashboard
-                      </a>
+                      </Link>
+                    </li>
+                  )}
+                  {isAuthenticated() && isAuthenticated().user.role === 1 && (
+                    <li>
+                      <Link className='dropdown-item' to='/admin/dashboard'>
+                        Dashboard
+                      </Link>
                     </li>
                   )}
                   {isAuthenticated() && (
                     <li>
-                      <a
+                      <Link
                         onClick={() => logout()}
                         className='dropdown-item'
-                        href='/'
+                        to='/'
                       >
                         Logout
-                      </a>
+                      </Link>
                     </li>
                   )}
                 </ul>

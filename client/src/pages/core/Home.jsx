@@ -1,8 +1,29 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import LayoutMain from '../../components/core/LayoutMain';
-import RegisterForm from "../../components/auth/RegisterForm"
+import RegisterForm from '../../components/auth/RegisterForm';
+import ProductCard from '../../components/core/ProductCard';
+
+import { getProducts, getCategories } from '../../api/admin';
 
 const Home = () => {
+  const [products, setProducts] = useState([]);
+  const [error, setError] = useState('');
+
+  const loadProducts = () => {
+    getProducts().then(data => {
+      console.log(data.data);
+      if (data.error) {
+        setError(data.error);
+      } else {
+        setProducts(data.data);
+      }
+    });
+  };
+
+  useEffect(() => {
+    loadProducts();
+  }, []);
+
   return (
     <LayoutMain>
       <section className='section'>
@@ -37,7 +58,7 @@ const Home = () => {
                         Discover our selection of the best Headphones
                       </p>
                       <a className='btn btn-primary' href='javascript:;'>
-                        Shop Now{' '}
+                        Shop Now
                         <i className='fas fa-chevron-right ml-2 mr-n1'></i>
                       </a>
                     </div>
@@ -71,7 +92,7 @@ const Home = () => {
                         Get the best of our store at your fingertips
                       </p>
                       <a className='btn btn-primary' href='javascript:;'>
-                        Shop Now{' '}
+                        Shop Now
                         <i className='fas fa-chevron-right ml-2 mr-n1'></i>
                       </a>
                     </div>
@@ -105,7 +126,7 @@ const Home = () => {
                         We have all the products to make your life easier
                       </p>
                       <a className='btn btn-primary' href='javascript:;'>
-                        Shop Now{' '}
+                        Shop Now
                         <i className='fas fa-chevron-right ml-2 mr-n1'></i>
                       </a>
                     </div>
@@ -139,7 +160,7 @@ const Home = () => {
                         We have what you&#39;re looking for in all tech industry
                       </p>
                       <a className='btn btn-primary' href='javascript:;'>
-                        Shop Now{' '}
+                        Shop Now
                         <i className='fas fa-chevron-right ml-2 mr-n1'></i>
                       </a>
                     </div>
@@ -164,7 +185,7 @@ const Home = () => {
             <div className='col-xl-8 col-lg-9'>
               <div className='shadow-box shadow-hover bg-contrast p-3 rounded h-100'>
                 <p className='text-darker bold mt-0 d-flex'>
-                  Weekend Deals{' '}
+                  Weekend Deals
                   <a href='javascript:;' className='small text-muted ml-auto'>
                     View more
                   </a>
@@ -181,7 +202,7 @@ const Home = () => {
                         $
                         <span className='price text-darker bold ml-1 mr-auto'>
                           12.15
-                        </span>{' '}
+                        </span>
                         <span className='badge badge-danger'>25% Off</span>
                       </p>
                     </a>
@@ -197,7 +218,7 @@ const Home = () => {
                         $
                         <span className='price text-darker bold ml-1 mr-auto'>
                           1.45
-                        </span>{' '}
+                        </span>
                         <span className='badge badge-danger'>15% Off</span>
                       </p>
                     </a>
@@ -213,7 +234,7 @@ const Home = () => {
                         $
                         <span className='price text-darker bold ml-1 mr-auto'>
                           19.99
-                        </span>{' '}
+                        </span>
                         <span className='badge badge-danger'>45% Off</span>
                       </p>
                     </a>
@@ -229,7 +250,7 @@ const Home = () => {
                         $
                         <span className='price text-darker bold ml-1 mr-auto'>
                           29.99
-                        </span>{' '}
+                        </span>
                         <span className='badge badge-danger'>18% Off</span>
                       </p>
                     </a>
@@ -243,7 +264,7 @@ const Home = () => {
                   Register to get the best deals
                 </p>
                 <p className='text-muted mb-5'>
-                  By registering you accept the{' '}
+                  By registering you accept the
                   <a href='#!'>Terms and Conditions</a> policy
                 </p>
                 <RegisterForm />
@@ -292,282 +313,342 @@ const Home = () => {
           </div>
         </div>
       </section>
-      <section class="trending-now">
-            <div class="container">
-                <div class="section-heading"><span class="text-primary bold">Discover</span>
-                    <h3>What's Trending Now</h3>
-                </div>
-                <div class="row gap-y">
-                    <div class="col-sm-6 col-md-4 col-lg-3 shadow-hover">
-                        <div class="card product-card border-0"><a class="card-img-top d-block overflow-hidden" href="javascript:;"><img src="assets/img/shop/products/computerconnection.png" class="img-responsive mx-auto" alt="" /></a>
-                            <div class="card-body"><a class="product-category text-muted font-xs" href="javascript:;">Wireless &amp; Bluetooth</a>
-                                <h3 class="product-title font-sm"><a href="javascript:;" class="text-darker">Bluetooh Mouse</a></h3>
-                                <div class="center-flex justify-content-between flex-wrap">
-                                    <div class="product-price d-flex align-items-end">
-                                        <div class="text-primary light lead"><span>$25.</span> <sup>00</sup></div><del class="text-muted light strike-through ml-2"><span>$45.</span> <sup>00</sup></del>
-                                    </div>
-                                    <div class="product-rating small text-alternate"><i class="fas fa-star"></i> <i class="fas fa-star"></i> <i class="fas fa-star"></i> <i class="fas fa-star"></i> <i class="fas fa-star"></i></div>
-                                </div>
-                            </div>
-                            <div class="card-body card-body-hidden"><button class="btn btn-primary btn-block mb-2" type="button"><i data-feather="shopping-cart" class="mr-1" width="16"></i>Add to Cart</button>
-                                <div class="text-center"><a class="font-ms small text-muted" href="#quick-view" data-toggle="fmodal"><i data-feather="eye" class="mr-1" width="14"></i>View Product</a></div>
-                            </div>
-                        </div>
-                        <hr class="d-sm-none" />
-                    </div>
-                    <div class="col-sm-6 col-md-4 col-lg-3 shadow-hover">
-                        <div class="card product-card border-0"><a class="card-img-top d-block overflow-hidden" href="javascript:;"><img src="assets/img/shop/products/externalharddrive.png" class="img-responsive mx-auto" alt="" /></a>
-                            <div class="card-body"><a class="product-category text-muted font-xs" href="javascript:;">Computer &amp; Electronics</a>
-                                <h3 class="product-title font-sm"><a href="javascript:;" class="text-darker">External Hard Drive</a></h3>
-                                <div class="center-flex justify-content-between flex-wrap">
-                                    <div class="product-price d-flex align-items-end">
-                                        <div class="text-primary light lead"><span>$78.</span> <sup>00</sup></div>
-                                    </div>
-                                    <div class="product-rating small text-alternate"><i class="fas fa-star"></i> <i class="fas fa-star"></i> <i class="fas fa-star"></i> <i class="fas fa-star"></i> <i class="far fa-star"></i></div>
-                                </div>
-                            </div>
-                            <div class="card-body card-body-hidden"><button class="btn btn-primary btn-block mb-2" type="button"><i data-feather="shopping-cart" class="mr-1" width="16"></i>Add to Cart</button>
-                                <div class="text-center"><a class="font-ms small text-muted" href="#quick-view" data-toggle="modal"><i data-feather="eye" class="mr-1" width="14"></i>View Product</a></div>
-                            </div>
-                        </div>
-                        <hr class="d-sm-none" />
-                    </div>
-                    <div class="col-sm-6 col-md-4 col-lg-3 shadow-hover">
-                        <div class="card product-card border-0"><a class="card-img-top d-block overflow-hidden" href="javascript:;"><img src="assets/img/shop/products/modernspeakers.jpg" class="img-responsive mx-auto" alt="" /></a>
-                            <div class="card-body"><a class="product-category text-muted font-xs" href="javascript:;">Speakers</a>
-                                <h3 class="product-title font-sm"><a href="javascript:;" class="text-darker">Modern Speakers</a></h3>
-                                <div class="center-flex justify-content-between flex-wrap">
-                                    <div class="product-price d-flex align-items-end">
-                                        <div class="text-primary light lead"><span>$124.</span> <sup>00</sup></div><del class="text-muted light strike-through ml-2"><span>$154.</span> <sup>00</sup></del>
-                                    </div>
-                                    <div class="product-rating small text-alternate"><i class="fas fa-star"></i> <i class="fas fa-star"></i> <i class="fas fa-star"></i> <i class="far fa-star"></i> <i class="far fa-star"></i></div>
-                                </div>
-                            </div>
-                            <div class="card-body card-body-hidden"><button class="btn btn-primary btn-block mb-2" type="button"><i data-feather="shopping-cart" class="mr-1" width="16"></i>Add to Cart</button>
-                                <div class="text-center"><a class="font-ms small text-muted" href="#quick-view" data-toggle="modal"><i data-feather="eye" class="mr-1" width="14"></i>View Product</a></div>
-                            </div>
-                        </div>
-                        <hr class="d-sm-none" />
-                    </div>
-                    <div class="col-sm-6 col-md-4 col-lg-3 shadow-hover">
-                        <div class="card product-card border-0"><a class="card-img-top d-block overflow-hidden" href="javascript:;"><img src="assets/img/shop/products/vrglassesdual.png" class="img-responsive mx-auto" alt="" /></a>
-                            <div class="card-body"><a class="product-category text-muted font-xs" href="javascript:;">Virtual Reality</a>
-                                <h3 class="product-title font-sm"><a href="javascript:;" class="text-darker">Virtual Reality Glasses</a></h3>
-                                <div class="center-flex justify-content-between flex-wrap">
-                                    <div class="product-price d-flex align-items-end">
-                                        <div class="text-primary light lead"><span>$145.</span> <sup>00</sup></div>
-                                    </div>
-                                    <div class="product-rating small text-alternate"><i class="fas fa-star"></i> <i class="fas fa-star"></i> <i class="fas fa-star"></i> <i class="fas fa-star"></i> <i class="fas fa-star"></i></div>
-                                </div>
-                            </div>
-                            <div class="card-body card-body-hidden"><button class="btn btn-primary btn-block mb-2" type="button"><i data-feather="shopping-cart" class="mr-1" width="16"></i>Add to Cart</button>
-                                <div class="text-center"><a class="font-ms small text-muted" href="#quick-view" data-toggle="modal"><i data-feather="eye" class="mr-1" width="14"></i>View Product</a></div>
-                            </div>
-                        </div>
-                        <hr class="d-sm-none" />
-                    </div>
-                    <div class="col-sm-6 col-md-4 col-lg-3 shadow-hover">
-                        <div class="card product-card border-0"><a class="card-img-top d-block overflow-hidden" href="javascript:;"><img src="assets/img/shop/products/dualshock.png" class="img-responsive mx-auto" alt="" /></a>
-                            <div class="card-body"><a class="product-category text-muted font-xs" href="javascript:;">Gaming &amp; Consoles</a>
-                                <h3 class="product-title font-sm"><a href="javascript:;" class="text-darker">Dual Shock Controller</a></h3>
-                                <div class="center-flex justify-content-between flex-wrap">
-                                    <div class="product-price d-flex align-items-end">
-                                        <div class="text-primary light lead"><span>$87.</span> <sup>00</sup></div><del class="text-muted light strike-through ml-2"><span>$54.</span> <sup>00</sup></del>
-                                    </div>
-                                    <div class="product-rating small text-alternate"><i class="fas fa-star"></i> <i class="fas fa-star"></i> <i class="fas fa-star"></i> <i class="fas fa-star"></i> <i class="fas fa-star"></i></div>
-                                </div>
-                            </div>
-                            <div class="card-body card-body-hidden"><button class="btn btn-primary btn-block mb-2" type="button"><i data-feather="shopping-cart" class="mr-1" width="16"></i>Add to Cart</button>
-                                <div class="text-center"><a class="font-ms small text-muted" href="#quick-view" data-toggle="modal"><i data-feather="eye" class="mr-1" width="14"></i>View Product</a></div>
-                            </div>
-                        </div>
-                        <hr class="d-sm-none" />
-                    </div>
-                    <div class="col-sm-6 col-md-4 col-lg-3 shadow-hover">
-                        <div class="card product-card border-0"><a class="card-img-top d-block overflow-hidden" href="javascript:;"><img src="assets/img/shop/products/wiredmouse.png" class="img-responsive mx-auto" alt="" /></a>
-                            <div class="card-body"><a class="product-category text-muted font-xs" href="javascript:;">Computer &amp; Electronics</a>
-                                <h3 class="product-title font-sm"><a href="javascript:;" class="text-darker">Wired Classic Mouse</a></h3>
-                                <div class="center-flex justify-content-between flex-wrap">
-                                    <div class="product-price d-flex align-items-end">
-                                        <div class="text-primary light lead"><span>$12.</span> <sup>00</sup></div>
-                                    </div>
-                                    <div class="product-rating small text-alternate"><i class="fas fa-star"></i> <i class="fas fa-star"></i> <i class="fas fa-star"></i> <i class="fas fa-star"></i> <i class="far fa-star"></i></div>
-                                </div>
-                            </div>
-                            <div class="card-body card-body-hidden"><button class="btn btn-primary btn-block mb-2" type="button"><i data-feather="shopping-cart" class="mr-1" width="16"></i>Add to Cart</button>
-                                <div class="text-center"><a class="font-ms small text-muted" href="#quick-view" data-toggle="modal"><i data-feather="eye" class="mr-1" width="14"></i>View Product</a></div>
-                            </div>
-                        </div>
-                        <hr class="d-sm-none" />
-                    </div>
-                    <div class="col-sm-6 col-md-4 col-lg-3 shadow-hover">
-                        <div class="card product-card border-0"><a class="card-img-top d-block overflow-hidden" href="javascript:;"><img src="assets/img/shop/products/audioclassicmic.png" class="img-responsive mx-auto" alt="" /></a>
-                            <div class="card-body"><a class="product-category text-muted font-xs" href="javascript:;">Professional Audio</a>
-                                <h3 class="product-title font-sm"><a href="javascript:;" class="text-darker">Classic Microphone</a></h3>
-                                <div class="center-flex justify-content-between flex-wrap">
-                                    <div class="product-price d-flex align-items-end">
-                                        <div class="text-primary light lead"><span>$25.</span> <sup>00</sup></div><del class="text-muted light strike-through ml-2"><span>$54.</span> <sup>00</sup></del>
-                                    </div>
-                                    <div class="product-rating small text-alternate"><i class="fas fa-star"></i> <i class="fas fa-star"></i> <i class="fas fa-star"></i> <i class="fas fa-star"></i> <i class="far fa-star"></i></div>
-                                </div>
-                            </div>
-                            <div class="card-body card-body-hidden"><button class="btn btn-primary btn-block mb-2" type="button"><i data-feather="shopping-cart" class="mr-1" width="16"></i>Add to Cart</button>
-                                <div class="text-center"><a class="font-ms small text-muted" href="#quick-view" data-toggle="modal"><i data-feather="eye" class="mr-1" width="14"></i>View Product</a></div>
-                            </div>
-                        </div>
-                        <hr class="d-sm-none" />
-                    </div>
-                    <div class="col-sm-6 col-md-4 col-lg-3 shadow-hover">
-                        <div class="card product-card border-0"><a class="card-img-top d-block overflow-hidden" href="javascript:;"><img src="assets/img/shop/products/wireless-headphones.png" class="img-responsive mx-auto" alt="" /></a>
-                            <div class="card-body"><a class="product-category text-muted font-xs" href="javascript:;">Wireless &amp; Bluetooth</a>
-                                <h3 class="product-title font-sm"><a href="javascript:;" class="text-darker">Wireless Headphones</a></h3>
-                                <div class="center-flex justify-content-between flex-wrap">
-                                    <div class="product-price d-flex align-items-end">
-                                        <div class="text-primary light lead"><span>$45.</span> <sup>00</sup></div>
-                                    </div>
-                                    <div class="product-rating small text-alternate"><i class="fas fa-star"></i> <i class="fas fa-star"></i> <i class="fas fa-star"></i> <i class="fas fa-star"></i> <i class="fas fa-star"></i></div>
-                                </div>
-                            </div>
-                            <div class="card-body card-body-hidden"><button class="btn btn-primary btn-block mb-2" type="button"><i data-feather="shopping-cart" class="mr-1" width="16"></i>Add to Cart</button>
-                                <div class="text-center"><a class="font-ms small text-muted" href="#quick-view" data-toggle="modal"><i data-feather="eye" class="mr-1" width="14"></i>View Product</a></div>
-                            </div>
-                        </div>
-                        <hr class="d-sm-none" />
-                    </div>
-                </div>
-                <div class="text-center pt-3 mt-5"><a class="btn btn-outline-primary" href="javascript:;">More products <i class="fas fa-chevron-right ml-1"></i></a></div>
+      <section class='trending-now'>
+        <div class='container'>
+          <div class='section-heading'>
+            <span class='text-primary bold'>Discover</span>
+            <h3>What's Trending Now</h3>
+          </div>
+          <div class='row gap-y'>
+            {products.map((product, i) => (
+              <ProductCard key={i} product={product} />
+            ))}
+          </div>
+          <div class='text-center pt-3 mt-5'>
+            <a class='btn btn-outline-primary' href='javascript:;'>
+              More products <i class='fas fa-chevron-right ml-1'></i>
+            </a>
+          </div>
+        </div>
+      </section>
+      <section class='bg-light edge bottom-right'>
+        <div class='container'>
+          <div class='row align-items-center'>
+            <div class='col-md-6 text-center'>
+              <h2 class='mb-3'>35% Off on Tech Gadgets</h2>
+              <a href='javascript:;' class='btn btn-lg btn-primary'>
+                Shop Now
+              </a>
             </div>
-        </section>
-        <section class="bg-light edge bottom-right">
-            <div class="container">
-                <div class="row align-items-center">
-                    <div class="col-md-6 text-center">
-                        <h2 class="mb-3">35% Off on Tech Gadgets</h2><a href="javascript:;" class="btn btn-lg btn-primary">Shop Now</a>
-                    </div>
-                    <div class="col-md-6">
-                        <p class="mt-0 text-muted">All popular technology gadgets are up to 35% off. Shop now for your favorites tablets, smartphones, watches and more"</p>
-                        <nav class="nav"><a href="javascript:;" class="nav-link nav-item dotted px-0 mx-2 ml-0">Tablets</a> <a href="javascript:;" class="nav-link nav-item dotted px-0 mx-2">Smartphones</a> <a href="javascript:;" class="nav-link nav-item dotted px-0 mx-2">Watches</a></nav>
-                    </div>
-                </div>
+            <div class='col-md-6'>
+              <p class='mt-0 text-muted'>
+                All popular technology gadgets are up to 35% off. Shop now for
+                your favorites tablets, smartphones, watches and more"
+              </p>
+              <nav class='nav'>
+                <a
+                  href='javascript:;'
+                  class='nav-link nav-item dotted px-0 mx-2 ml-0'
+                >
+                  Tablets
+                </a>
+                <a
+                  href='javascript:;'
+                  class='nav-link nav-item dotted px-0 mx-2'
+                >
+                  Smartphones
+                </a>
+                <a
+                  href='javascript:;'
+                  class='nav-link nav-item dotted px-0 mx-2'
+                >
+                  Watches
+                </a>
+              </nav>
             </div>
-        </section>
-        <section class="section">
-            <div class="container bring-to-front">
-                <div class="row gap-y">
-                    <div class="col-lg-3 promo-column">
-                        <div class="rounded promo-block zoom-background">
-                            <div class="absolute top right bottom left image-background cover overlay overlay-dark alpha-1 w-100 h-100" style={{backgroundImage: "url(assets/img/shop/products/wearable.jpg)"}}></div>
-                            <div class="content position-relative p-4">
-                                <h4 class="text-contrast mt-0">Wearable</h4>
-                                <p class="text-light mt-0">Smart electronic devices for your day to day life.</p><a href="javascript:;" class="btn btn-contrast">Shop Wearable</a>
-                            </div>
-                        </div>
-                        <div class="rounded promo-block zoom-background mt-4">
-                            <div class="absolute top right bottom left image-background cover overlay overlay-dark alpha-1 w-100 h-100" style={{backgroundImage: "url(assets/img/shop/products/innovative.jpg)"}}></div>
-                            <div class="content position-relative p-4">
-                                <h4 class="text-contrast mt-0">Innovative</h4>
-                                <p class="text-light mt-0">Make your life easeier with these smart solutions.</p><a href="javascript:;" class="btn btn-contrast">Shop Innovative</a>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-6 promo-column">
-                        <div class="rounded promo-block zoom-background">
-                            <div class="absolute top right bottom left image-background cover overlay overlay-light alpha-3 w-100 h-100" style={{backgroundImage: "url(assets/img/shop/products/smartphone.jpg)"}}></div>
-                            <div class="content position-relative p-4">
-                                <h4 class="text-darker mt-0">Smartphones</h4>
-                                <p class="text-dark mt-0">Your personal smartphone are just one click away.</p><a href="javascript:;" class="btn btn-contrast">Shop Smartphones</a>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-3 promo-column">
-                        <div class="rounded promo-block zoom-background">
-                            <div class="absolute top right bottom left image-background cover overlay overlay-light alpha-3 w-100 h-100" style={{backgroundImage: "url(assets/img/shop/products/wifi.jpg)"}}></div>
-                            <div class="content position-relative p-4">
-                                <h4 class="text-darker mt-0">Wifi</h4>
-                                <p class="text-dark mt-0">Exclusive high quality wifi technology to extend your network.</p><a href="javascript:;" class="btn btn-contrast">Shop Wifi</a>
-                            </div>
-                        </div>
-                        <div class="rounded promo-block zoom-background mt-4">
-                            <div class="absolute top right bottom left image-background cover overlay overlay-dark alpha-1 w-100 h-100" style={{backgroundImage: "url(assets/img/shop/products/headphones-yellow-bg.jpg)"}}></div>
-                            <div class="content position-relative p-4">
-                                <h4 class="text-contrast mt-0">Headphones</h4>
-                                <p class="text-light mt-0">Enjoy your favorite playlist with an amazing sound quality.</p><a href="javascript:;" class="btn btn-contrast">Shop Headphones</a>
-                            </div>
-                        </div>
-                    </div>
+          </div>
+        </div>
+      </section>
+      <section class='section'>
+        <div class='container bring-to-front'>
+          <div class='row gap-y'>
+            <div class='col-lg-3 promo-column'>
+              <div class='rounded promo-block zoom-background'>
+                <div
+                  class='absolute top right bottom left image-background cover overlay overlay-dark alpha-1 w-100 h-100'
+                  style={{
+                    backgroundImage:
+                      'url(assets/img/shop/products/wearable.jpg)'
+                  }}
+                ></div>
+                <div class='content position-relative p-4'>
+                  <h4 class='text-contrast mt-0'>Wearable</h4>
+                  <p class='text-light mt-0'>
+                    Smart electronic devices for your day to day life.
+                  </p>
+                  <a href='javascript:;' class='btn btn-contrast'>
+                    Shop Wearable
+                  </a>
                 </div>
+              </div>
+              <div class='rounded promo-block zoom-background mt-4'>
+                <div
+                  class='absolute top right bottom left image-background cover overlay overlay-dark alpha-1 w-100 h-100'
+                  style={{
+                    backgroundImage:
+                      'url(assets/img/shop/products/innovative.jpg)'
+                  }}
+                ></div>
+                <div class='content position-relative p-4'>
+                  <h4 class='text-contrast mt-0'>Innovative</h4>
+                  <p class='text-light mt-0'>
+                    Make your life easeier with these smart solutions.
+                  </p>
+                  <a href='javascript:;' class='btn btn-contrast'>
+                    Shop Innovative
+                  </a>
+                </div>
+              </div>
             </div>
-        </section>
-        <section class="brands">
-            <div class="container">
-                <div class="section-heading"><span class="text-primary bold">Brands</span>
-                    <h3>Our Brands</h3>
+            <div class='col-lg-6 promo-column'>
+              <div class='rounded promo-block zoom-background'>
+                <div
+                  class='absolute top right bottom left image-background cover overlay overlay-light alpha-3 w-100 h-100'
+                  style={{
+                    backgroundImage:
+                      'url(assets/img/shop/products/smartphone.jpg)'
+                  }}
+                ></div>
+                <div class='content position-relative p-4'>
+                  <h4 class='text-darker mt-0'>Smartphones</h4>
+                  <p class='text-dark mt-0'>
+                    Your personal smartphone are just one click away.
+                  </p>
+                  <a href='javascript:;' class='btn btn-contrast'>
+                    Shop Smartphones
+                  </a>
                 </div>
-                <div class="row gap-y">
-                    <div class="col-6 col-sm-4 col-md-3">
-                        <div class="card border-0 shadow-sm shadow-hover lift-hover">
-                            <div class="card-body py-4"><a href="#"><img class="d-block mx-auto" style={{maxHeight: "64px"}} src="assets/img/shop/brands/1.svg" alt="" /></a></div>
-                        </div>
-                    </div>
-                    <div class="col-6 col-sm-4 col-md-3">
-                        <div class="card border-0 shadow-sm shadow-hover lift-hover">
-                            <div class="card-body py-4"><a href="#"><img class="d-block mx-auto" style={{maxHeight: "64px"}} src="assets/img/shop/brands/2.svg" alt="" /></a></div>
-                        </div>
-                    </div>
-                    <div class="col-6 col-sm-4 col-md-3">
-                        <div class="card border-0 shadow-sm shadow-hover lift-hover">
-                            <div class="card-body py-4"><a href="#"><img class="d-block mx-auto" style={{maxHeight: "64px"}} src="assets/img/shop/brands/3.svg" alt="" /></a></div>
-                        </div>
-                    </div>
-                    <div class="col-6 col-sm-4 col-md-3">
-                        <div class="card border-0 shadow-sm shadow-hover lift-hover">
-                            <div class="card-body py-4"><a href="#"><img class="d-block mx-auto" style={{maxHeight: "64px"}} src="assets/img/shop/brands/4.svg" alt="" /></a></div>
-                        </div>
-                    </div>
-                    <div class="col-6 col-sm-4 col-md-3">
-                        <div class="card border-0 shadow-sm shadow-hover lift-hover">
-                            <div class="card-body py-4"><a href="#"><img class="d-block mx-auto" style={{maxHeight: "64px"}} src="assets/img/shop/brands/5.svg" alt="" /></a></div>
-                        </div>
-                    </div>
-                    <div class="col-6 col-sm-4 col-md-3">
-                        <div class="card border-0 shadow-sm shadow-hover lift-hover">
-                            <div class="card-body py-4"><a href="#"><img class="d-block mx-auto" style={{maxHeight: "64px"}} src="assets/img/shop/brands/6.svg" alt="" /></a></div>
-                        </div>
-                    </div>
-                    <div class="col-6 col-sm-4 col-md-3">
-                        <div class="card border-0 shadow-sm shadow-hover lift-hover">
-                            <div class="card-body py-4"><a href="#"><img class="d-block mx-auto" style={{maxHeight: "64px"}} src="assets/img/shop/brands/7.svg" alt="" /></a></div>
-                        </div>
-                    </div>
-                    <div class="col-6 col-sm-4 col-md-3">
-                        <div class="card border-0 shadow-sm shadow-hover lift-hover">
-                            <div class="card-body py-4"><a href="#"><img class="d-block mx-auto" style={{maxHeight: "64px"}} src="assets/img/shop/brands/8.svg" alt="" /></a></div>
-                        </div>
-                    </div>
-                    <div class="col-6 col-sm-4 col-md-3">
-                        <div class="card border-0 shadow-sm shadow-hover lift-hover">
-                            <div class="card-body py-4"><a href="#"><img class="d-block mx-auto" style={{maxHeight: "64px"}} src="assets/img/shop/brands/9.svg" alt="" /></a></div>
-                        </div>
-                    </div>
-                    <div class="col-6 col-sm-4 col-md-3">
-                        <div class="card border-0 shadow-sm shadow-hover lift-hover">
-                            <div class="card-body py-4"><a href="#"><img class="d-block mx-auto" style={{maxHeight: "64px"}} src="assets/img/shop/brands/10.svg" alt="" /></a></div>
-                        </div>
-                    </div>
-                    <div class="col-6 col-sm-4 col-md-3">
-                        <div class="card border-0 shadow-sm shadow-hover lift-hover">
-                            <div class="card-body py-4"><a href="#"><img class="d-block mx-auto" style={{maxHeight: "64px"}} src="assets/img/shop/brands/11.svg" alt="" /></a></div>
-                        </div>
-                    </div>
-                    <div class="col-6 col-sm-4 col-md-3">
-                        <div class="card border-0 shadow-sm shadow-hover lift-hover">
-                            <div class="card-body py-4"><a href="#"><img class="d-block mx-auto" style={{maxHeight: "64px"}} src="assets/img/shop/brands/12.svg" alt="" /></a></div>
-                        </div>
-                    </div>
-                </div>
+              </div>
             </div>
-        </section>
-
+            <div class='col-lg-3 promo-column'>
+              <div class='rounded promo-block zoom-background'>
+                <div
+                  class='absolute top right bottom left image-background cover overlay overlay-light alpha-3 w-100 h-100'
+                  style={{
+                    backgroundImage: 'url(assets/img/shop/products/wifi.jpg)'
+                  }}
+                ></div>
+                <div class='content position-relative p-4'>
+                  <h4 class='text-darker mt-0'>Wifi</h4>
+                  <p class='text-dark mt-0'>
+                    Exclusive high quality wifi technology to extend your
+                    network.
+                  </p>
+                  <a href='javascript:;' class='btn btn-contrast'>
+                    Shop Wifi
+                  </a>
+                </div>
+              </div>
+              <div class='rounded promo-block zoom-background mt-4'>
+                <div
+                  class='absolute top right bottom left image-background cover overlay overlay-dark alpha-1 w-100 h-100'
+                  style={{
+                    backgroundImage:
+                      'url(assets/img/shop/products/headphones-yellow-bg.jpg)'
+                  }}
+                ></div>
+                <div class='content position-relative p-4'>
+                  <h4 class='text-contrast mt-0'>Headphones</h4>
+                  <p class='text-light mt-0'>
+                    Enjoy your favorite playlist with an amazing sound quality.
+                  </p>
+                  <a href='javascript:;' class='btn btn-contrast'>
+                    Shop Headphones
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+      <section class='brands'>
+        <div class='container'>
+          <div class='section-heading'>
+            <span class='text-primary bold'>Brands</span>
+            <h3>Our Brands</h3>
+          </div>
+          <div class='row gap-y'>
+            <div class='col-6 col-sm-4 col-md-3'>
+              <div class='card border-0 shadow-sm shadow-hover lift-hover'>
+                <div class='card-body py-4'>
+                  <a href='#'>
+                    <img
+                      class='d-block mx-auto'
+                      style={{ maxHeight: '64px' }}
+                      src='assets/img/shop/brands/1.svg'
+                      alt=''
+                    />
+                  </a>
+                </div>
+              </div>
+            </div>
+            <div class='col-6 col-sm-4 col-md-3'>
+              <div class='card border-0 shadow-sm shadow-hover lift-hover'>
+                <div class='card-body py-4'>
+                  <a href='#'>
+                    <img
+                      class='d-block mx-auto'
+                      style={{ maxHeight: '64px' }}
+                      src='assets/img/shop/brands/2.svg'
+                      alt=''
+                    />
+                  </a>
+                </div>
+              </div>
+            </div>
+            <div class='col-6 col-sm-4 col-md-3'>
+              <div class='card border-0 shadow-sm shadow-hover lift-hover'>
+                <div class='card-body py-4'>
+                  <a href='#'>
+                    <img
+                      class='d-block mx-auto'
+                      style={{ maxHeight: '64px' }}
+                      src='assets/img/shop/brands/3.svg'
+                      alt=''
+                    />
+                  </a>
+                </div>
+              </div>
+            </div>
+            <div class='col-6 col-sm-4 col-md-3'>
+              <div class='card border-0 shadow-sm shadow-hover lift-hover'>
+                <div class='card-body py-4'>
+                  <a href='#'>
+                    <img
+                      class='d-block mx-auto'
+                      style={{ maxHeight: '64px' }}
+                      src='assets/img/shop/brands/4.svg'
+                      alt=''
+                    />
+                  </a>
+                </div>
+              </div>
+            </div>
+            <div class='col-6 col-sm-4 col-md-3'>
+              <div class='card border-0 shadow-sm shadow-hover lift-hover'>
+                <div class='card-body py-4'>
+                  <a href='#'>
+                    <img
+                      class='d-block mx-auto'
+                      style={{ maxHeight: '64px' }}
+                      src='assets/img/shop/brands/5.svg'
+                      alt=''
+                    />
+                  </a>
+                </div>
+              </div>
+            </div>
+            <div class='col-6 col-sm-4 col-md-3'>
+              <div class='card border-0 shadow-sm shadow-hover lift-hover'>
+                <div class='card-body py-4'>
+                  <a href='#'>
+                    <img
+                      class='d-block mx-auto'
+                      style={{ maxHeight: '64px' }}
+                      src='assets/img/shop/brands/6.svg'
+                      alt=''
+                    />
+                  </a>
+                </div>
+              </div>
+            </div>
+            <div class='col-6 col-sm-4 col-md-3'>
+              <div class='card border-0 shadow-sm shadow-hover lift-hover'>
+                <div class='card-body py-4'>
+                  <a href='#'>
+                    <img
+                      class='d-block mx-auto'
+                      style={{ maxHeight: '64px' }}
+                      src='assets/img/shop/brands/7.svg'
+                      alt=''
+                    />
+                  </a>
+                </div>
+              </div>
+            </div>
+            <div class='col-6 col-sm-4 col-md-3'>
+              <div class='card border-0 shadow-sm shadow-hover lift-hover'>
+                <div class='card-body py-4'>
+                  <a href='#'>
+                    <img
+                      class='d-block mx-auto'
+                      style={{ maxHeight: '64px' }}
+                      src='assets/img/shop/brands/8.svg'
+                      alt=''
+                    />
+                  </a>
+                </div>
+              </div>
+            </div>
+            <div class='col-6 col-sm-4 col-md-3'>
+              <div class='card border-0 shadow-sm shadow-hover lift-hover'>
+                <div class='card-body py-4'>
+                  <a href='#'>
+                    <img
+                      class='d-block mx-auto'
+                      style={{ maxHeight: '64px' }}
+                      src='assets/img/shop/brands/9.svg'
+                      alt=''
+                    />
+                  </a>
+                </div>
+              </div>
+            </div>
+            <div class='col-6 col-sm-4 col-md-3'>
+              <div class='card border-0 shadow-sm shadow-hover lift-hover'>
+                <div class='card-body py-4'>
+                  <a href='#'>
+                    <img
+                      class='d-block mx-auto'
+                      style={{ maxHeight: '64px' }}
+                      src='assets/img/shop/brands/10.svg'
+                      alt=''
+                    />
+                  </a>
+                </div>
+              </div>
+            </div>
+            <div class='col-6 col-sm-4 col-md-3'>
+              <div class='card border-0 shadow-sm shadow-hover lift-hover'>
+                <div class='card-body py-4'>
+                  <a href='#'>
+                    <img
+                      class='d-block mx-auto'
+                      style={{ maxHeight: '64px' }}
+                      src='assets/img/shop/brands/11.svg'
+                      alt=''
+                    />
+                  </a>
+                </div>
+              </div>
+            </div>
+            <div class='col-6 col-sm-4 col-md-3'>
+              <div class='card border-0 shadow-sm shadow-hover lift-hover'>
+                <div class='card-body py-4'>
+                  <a href='#'>
+                    <img
+                      class='d-block mx-auto'
+                      style={{ maxHeight: '64px' }}
+                      src='assets/img/shop/brands/12.svg'
+                      alt=''
+                    />
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
     </LayoutMain>
   );
 };
