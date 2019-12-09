@@ -18,10 +18,10 @@ const RegisterPage = () => {
             >
               <div class='content'>
                 <h2 class='display-4 display-md-3 text-contrast mt-4 mt-md-0'>
-                  Get started with <span class='bold d-block'>Dashcore</span>
+                  Get started with <span class='bold d-block'>Ecom-One</span>
                 </h2>
                 <p class='lead text-contrast'>
-                  Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+                  Register an account to have full experience.
                 </p>
               </div>
             </div>

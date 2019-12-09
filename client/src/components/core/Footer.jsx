@@ -1,6 +1,7 @@
 import React, { Fragment } from 'react';
+import { Link } from 'react-router-dom';
 
-const Footer = () => {
+const Footer = ({ categories }) => {
   return (
     <Fragment>
       <div class='position-relative'>
@@ -39,24 +40,15 @@ const Footer = () => {
             <div className='col-md-4'>
               <h6 className='text-contrast'>Categories</h6>
               <nav className='nav flex-column'>
-                <a className='nav-item py-1' href='#'>
-                  Wireless & Bluetooth
-                </a>
-                <a className='nav-item py-1' href='#'>
-                  Computer & Electronics
-                </a>
-                <a className='nav-item py-1' href='#'>
-                  Speakers
-                </a>
-                <a className='nav-item py-1' href='#'>
-                  Virtual Reality
-                </a>
-                <a className='nav-item py-1' href='#'>
-                  Gaming & Consoles
-                </a>
-                <a className='nav-item py-1' href='#'>
-                  TVs
-                </a>
+                {categories.map((c, i) => (
+                  <Link
+                    key={i}
+                    className='nav-item py-1'
+                    to={`/category/${c._id}`}
+                  >
+                    {c.name}
+                  </Link>
+                ))}
               </nav>
             </div>
             <div className='col-md-4'>

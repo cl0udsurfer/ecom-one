@@ -2,30 +2,10 @@ import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 
 import { logout, isAuthenticated } from '../../api/auth';
-import { getCategories } from '../../api/admin';
 
 import '../../assets/css/navbar.css';
 
-const Navbar = () => {
-  const [categories, setCategories] = useState([]);
-  const [error, setError] = useState('');
-
-  // Load all Categories
-  const loadCategories = () => {
-    getCategories().then(data => {
-      console.log(data);
-      if (data.error) {
-        setError(data.error);
-      } else {
-        setCategories(data.data);
-      }
-    });
-  };
-
-  useEffect(() => {
-    loadCategories();
-  }, []);
-
+const Navbar = ({ categories }) => {
   return (
     <header className='header-global'>
       <nav
@@ -51,9 +31,9 @@ const Navbar = () => {
             <div className='navbar-collapse-header'>
               <div className='row'>
                 <div className='col-6 collapse-brand'>
-                  <a href='/'>
+                  <Link to='/'>
                     <img src='/assets/img/logunion/logunion.png' />
-                  </a>
+                  </Link>
                 </div>
                 <div className='col-6 collapse-close'>
                   <button
@@ -74,22 +54,22 @@ const Navbar = () => {
 
             <ul className='navbar-nav navbar-nav-hover align-items-lg-center ml-lg-auto'>
               <li className='nav-item'>
-                <a href='/' className='nav-link' data-toggle='' role='button'>
+                <Link to='/' className='nav-link' data-toggle='' role='button'>
                   <span className='nav-link-inner--text'>Home</span>
-                </a>
+                </Link>
               </li>
               <li className='nav-item'>
-                <a href='/' className='nav-link' data-toggle='' role='button'>
-                  <span className='nav-link-inner--text'>Shop</span>
-                </a>
-              </li>
-              <li className='nav-item dropdown'>
-                <a
-                  href='/leistungen'
+                <Link
+                  to='/shop'
                   className='nav-link'
-                  data-toggle='dropdown'
+                  data-toggle=''
                   role='button'
                 >
+                  <span className='nav-link-inner--text'>Shop</span>
+                </Link>
+              </li>
+              <li className='nav-item dropdown'>
+                <a className='nav-link' data-toggle='dropdown' role='button'>
                   <i className='ni ni-ui-04 d-lg-none'></i>
                   <span className='nav-link-inner--text'>Categories</span>
                 </a>
@@ -137,16 +117,16 @@ const Navbar = () => {
                 >
                   {!isAuthenticated() && (
                     <li>
-                      <a className='dropdown-item' href='/login'>
+                      <Link className='dropdown-item' to='/login'>
                         Login
-                      </a>
+                      </Link>
                     </li>
                   )}
                   {!isAuthenticated() && (
                     <li>
-                      <a className='dropdown-item' href='/register'>
+                      <Link className='dropdown-item' to='/register'>
                         Register
-                      </a>
+                      </Link>
                     </li>
                   )}
                   {isAuthenticated() && isAuthenticated().user.role === 0 && (

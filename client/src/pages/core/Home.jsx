@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { Link } from 'react-router-dom';
 import LayoutMain from '../../components/core/LayoutMain';
 import RegisterForm from '../../components/auth/RegisterForm';
 import ProductCard from '../../components/core/ProductCard';
@@ -7,6 +8,7 @@ import { getProducts, getCategories } from '../../api/admin';
 
 const Home = () => {
   const [products, setProducts] = useState([]);
+  const [categories, setCategories] = useState([]);
   const [error, setError] = useState('');
 
   const loadProducts = () => {
@@ -20,8 +22,20 @@ const Home = () => {
     });
   };
 
+  const loadCategories = () => {
+    getCategories().then(data => {
+      console.log(data);
+      if (data.error) {
+        setError(data.error);
+      } else {
+        setCategories(data.data);
+      }
+    });
+  };
+
   useEffect(() => {
     loadProducts();
+    loadCategories();
   }, []);
 
   return (
@@ -57,10 +71,10 @@ const Home = () => {
                       <p className='lead text-light pb-3'>
                         Discover our selection of the best Headphones
                       </p>
-                      <a className='btn btn-primary' href='javascript:;'>
+                      <Link className='btn btn-primary' href='/shop'>
                         Shop Now
                         <i className='fas fa-chevron-right ml-2 mr-n1'></i>
-                      </a>
+                      </Link>
                     </div>
                   </div>
                 </div>
@@ -325,9 +339,9 @@ const Home = () => {
             ))}
           </div>
           <div class='text-center pt-3 mt-5'>
-            <a class='btn btn-outline-primary' href='javascript:;'>
+            <Link class='btn btn-outline-primary' to='/shop'>
               More products <i class='fas fa-chevron-right ml-1'></i>
-            </a>
+            </Link>
           </div>
         </div>
       </section>
@@ -474,177 +488,49 @@ const Home = () => {
       <section class='brands'>
         <div class='container'>
           <div class='section-heading'>
-            <span class='text-primary bold'>Brands</span>
-            <h3>Our Brands</h3>
+            <span class='text-primary bold'>Categories</span>
+            <h3>Our Categories</h3>
           </div>
           <div class='row gap-y'>
-            <div class='col-6 col-sm-4 col-md-3'>
-              <div class='card border-0 shadow-sm shadow-hover lift-hover'>
-                <div class='card-body py-4'>
-                  <a href='#'>
-                    <img
-                      class='d-block mx-auto'
-                      style={{ maxHeight: '64px' }}
-                      src='assets/img/shop/brands/1.svg'
-                      alt=''
-                    />
-                  </a>
+            {categories.map((c, i) => (
+              <div class='col-6 col-sm-4 col-md-3'>
+                <div class='card border-0 shadow-sm shadow-hover lift-hover'>
+                  <div class='card-body py-4 text-center'>
+                    <Link to={`/category/${c._id}`}>{c.name}</Link>
+                  </div>
                 </div>
               </div>
+            ))}
+          </div>
+        </div>
+      </section>
+      <section
+        class='section gradient overlay alpha-8 gradient-purple-blue image-background cover text-contrast block bg-contrast'
+        style={{
+          backgroundImage:
+            'url(https://picsum.photos/350/200/?random&gravity=south)'
+        }}
+      >
+        <div class='container py-5 py-4'>
+          <div class='row align-items-center'>
+            <div class='col-md-6'>
+              <h2 class='text-contrast'>
+                Looking for an ideal Ecommerce
+                <span class='bold'> template?</span>
+              </h2>
+              <p class='op-8'>
+                With <span class='bold'>Ecom-One</span> you will have the ideal
+                Solution for a fast-working Online Shop.
+              </p>
             </div>
-            <div class='col-6 col-sm-4 col-md-3'>
-              <div class='card border-0 shadow-sm shadow-hover lift-hover'>
-                <div class='card-body py-4'>
-                  <a href='#'>
-                    <img
-                      class='d-block mx-auto'
-                      style={{ maxHeight: '64px' }}
-                      src='assets/img/shop/brands/2.svg'
-                      alt=''
-                    />
-                  </a>
-                </div>
-              </div>
-            </div>
-            <div class='col-6 col-sm-4 col-md-3'>
-              <div class='card border-0 shadow-sm shadow-hover lift-hover'>
-                <div class='card-body py-4'>
-                  <a href='#'>
-                    <img
-                      class='d-block mx-auto'
-                      style={{ maxHeight: '64px' }}
-                      src='assets/img/shop/brands/3.svg'
-                      alt=''
-                    />
-                  </a>
-                </div>
-              </div>
-            </div>
-            <div class='col-6 col-sm-4 col-md-3'>
-              <div class='card border-0 shadow-sm shadow-hover lift-hover'>
-                <div class='card-body py-4'>
-                  <a href='#'>
-                    <img
-                      class='d-block mx-auto'
-                      style={{ maxHeight: '64px' }}
-                      src='assets/img/shop/brands/4.svg'
-                      alt=''
-                    />
-                  </a>
-                </div>
-              </div>
-            </div>
-            <div class='col-6 col-sm-4 col-md-3'>
-              <div class='card border-0 shadow-sm shadow-hover lift-hover'>
-                <div class='card-body py-4'>
-                  <a href='#'>
-                    <img
-                      class='d-block mx-auto'
-                      style={{ maxHeight: '64px' }}
-                      src='assets/img/shop/brands/5.svg'
-                      alt=''
-                    />
-                  </a>
-                </div>
-              </div>
-            </div>
-            <div class='col-6 col-sm-4 col-md-3'>
-              <div class='card border-0 shadow-sm shadow-hover lift-hover'>
-                <div class='card-body py-4'>
-                  <a href='#'>
-                    <img
-                      class='d-block mx-auto'
-                      style={{ maxHeight: '64px' }}
-                      src='assets/img/shop/brands/6.svg'
-                      alt=''
-                    />
-                  </a>
-                </div>
-              </div>
-            </div>
-            <div class='col-6 col-sm-4 col-md-3'>
-              <div class='card border-0 shadow-sm shadow-hover lift-hover'>
-                <div class='card-body py-4'>
-                  <a href='#'>
-                    <img
-                      class='d-block mx-auto'
-                      style={{ maxHeight: '64px' }}
-                      src='assets/img/shop/brands/7.svg'
-                      alt=''
-                    />
-                  </a>
-                </div>
-              </div>
-            </div>
-            <div class='col-6 col-sm-4 col-md-3'>
-              <div class='card border-0 shadow-sm shadow-hover lift-hover'>
-                <div class='card-body py-4'>
-                  <a href='#'>
-                    <img
-                      class='d-block mx-auto'
-                      style={{ maxHeight: '64px' }}
-                      src='assets/img/shop/brands/8.svg'
-                      alt=''
-                    />
-                  </a>
-                </div>
-              </div>
-            </div>
-            <div class='col-6 col-sm-4 col-md-3'>
-              <div class='card border-0 shadow-sm shadow-hover lift-hover'>
-                <div class='card-body py-4'>
-                  <a href='#'>
-                    <img
-                      class='d-block mx-auto'
-                      style={{ maxHeight: '64px' }}
-                      src='assets/img/shop/brands/9.svg'
-                      alt=''
-                    />
-                  </a>
-                </div>
-              </div>
-            </div>
-            <div class='col-6 col-sm-4 col-md-3'>
-              <div class='card border-0 shadow-sm shadow-hover lift-hover'>
-                <div class='card-body py-4'>
-                  <a href='#'>
-                    <img
-                      class='d-block mx-auto'
-                      style={{ maxHeight: '64px' }}
-                      src='assets/img/shop/brands/10.svg'
-                      alt=''
-                    />
-                  </a>
-                </div>
-              </div>
-            </div>
-            <div class='col-6 col-sm-4 col-md-3'>
-              <div class='card border-0 shadow-sm shadow-hover lift-hover'>
-                <div class='card-body py-4'>
-                  <a href='#'>
-                    <img
-                      class='d-block mx-auto'
-                      style={{ maxHeight: '64px' }}
-                      src='assets/img/shop/brands/11.svg'
-                      alt=''
-                    />
-                  </a>
-                </div>
-              </div>
-            </div>
-            <div class='col-6 col-sm-4 col-md-3'>
-              <div class='card border-0 shadow-sm shadow-hover lift-hover'>
-                <div class='card-body py-4'>
-                  <a href='#'>
-                    <img
-                      class='d-block mx-auto'
-                      style={{ maxHeight: '64px' }}
-                      src='assets/img/shop/brands/12.svg'
-                      alt=''
-                    />
-                  </a>
-                </div>
-              </div>
+            <div class='col-md-4 ml-md-auto'>
+              <p class='handwritten highlight font-md mb-4'>It's free</p>
+              <a
+                href='https://github.com/cl0udsurfer/ecom-one'
+                class='btn btn-contrast btn-rounded ml-3'
+              >
+                Try it out
+              </a>
             </div>
           </div>
         </div>

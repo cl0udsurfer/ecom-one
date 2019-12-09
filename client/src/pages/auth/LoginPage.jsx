@@ -18,7 +18,7 @@ const LoginPage = () => {
             >
               <div class='content'>
                 <h2 class='display-4 display-md-3 text-contrast mt-4 mt-md-0'>
-                  Welcome to <span class='bold d-block'>Dashcore</span>
+                  Welcome to <span class='bold d-block'>Ecom-One</span>
                 </h2>
                 <p class='lead text-contrast'>Login to your account</p>
               </div>
