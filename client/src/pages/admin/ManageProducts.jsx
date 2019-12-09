@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 
 import LayoutMain from '../../components/core/LayoutMain';
+import ProductList from '../../components/admin/ProductList';
 
 import { isAuthenticated } from '../../api/auth';
 import { addProduct, getCategories, getProducts } from '../../api/admin';
@@ -179,7 +180,7 @@ const ManageProducts = () => {
                           ></textarea>
                         </div>
                         <div class='form-group'>
-                          <label for='contact_email' class='bold mb-0'>
+                          <label for='contact_email' class='bold mb-1'>
                             Select Category
                           </label>
                           <br />
@@ -234,6 +235,25 @@ const ManageProducts = () => {
                           </button>
                         </div>
                       </form>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </section>
+          </div>
+        </section>
+
+        <section class='section'>
+          <div class='container pt-0'>
+            <section class='section bg-light'>
+              <div class='container bring-to-front py-0'>
+                <div class='shadow bg-contrast p-5 rounded'>
+                  <div class='row gap-y text-lg-left'>
+                    <div class='col-12 px-5 b-md-r'>
+                      <h4 class='mr-3 mb-3'>Products</h4>
+                      {products.map((product, i) => (
+                        <ProductList key={i} product={product} />
+                      ))}
                     </div>
                   </div>
                 </div>
