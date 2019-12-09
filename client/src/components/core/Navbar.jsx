@@ -1,4 +1,7 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
+
+import { logout, isAuthenticated } from '../../api/auth';
 
 import '../../assets/css/style.css';
 
@@ -107,9 +110,14 @@ const Navbar = () => {
               </li>
 
               <li className='nav-item'>
-                <a href='/' className='nav-link' data-toggle='' role='button'>
+                <Link
+                  to='/cart'
+                  className='nav-link'
+                  data-toggle=''
+                  role='button'
+                >
                   <span className='nav-link-inner--text'>Cart</span>
-                </a>
+                </Link>
               </li>
 
               <li className='nav-item dropdown'>
@@ -125,26 +133,38 @@ const Navbar = () => {
                   className='dropdown-menu'
                   aria-labelledby='navbarDropdownMenuLink2'
                 >
-                  <li>
-                    <a className='dropdown-item' href='/'>
-                      Signin
-                    </a>
-                  </li>
-                  <li>
-                    <a className='dropdown-item' href='/'>
-                      Register
-                    </a>
-                  </li>
-                  <li>
-                    <a className='dropdown-item' href='/'>
-                      Dashboard
-                    </a>
-                  </li>
-                  <li>
-                    <a className='dropdown-item' href='/'>
-                      Logout
-                    </a>
-                  </li>
+                  {!isAuthenticated() && (
+                    <li>
+                      <a className='dropdown-item' href='/login'>
+                        Login
+                      </a>
+                    </li>
+                  )}
+                  {!isAuthenticated() && (
+                    <li>
+                      <a className='dropdown-item' href='/register'>
+                        Register
+                      </a>
+                    </li>
+                  )}
+                  {isAuthenticated() && (
+                    <li>
+                      <a className='dropdown-item' href='/'>
+                        Dashboard
+                      </a>
+                    </li>
+                  )}
+                  {isAuthenticated() && (
+                    <li>
+                      <a
+                        onClick={() => logout()}
+                        className='dropdown-item'
+                        href='/'
+                      >
+                        Logout
+                      </a>
+                    </li>
+                  )}
                 </ul>
               </li>
             </ul>

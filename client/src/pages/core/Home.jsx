@@ -1,5 +1,6 @@
 import React from 'react';
 import LayoutMain from '../../components/core/LayoutMain';
+import RegisterForm from "../../components/auth/RegisterForm"
 
 const Home = () => {
   return (
@@ -245,27 +246,7 @@ const Home = () => {
                   By registering you accept the{' '}
                   <a href='#!'>Terms and Conditions</a> policy
                 </p>
-                <form className='form'>
-                  <div className='form-group'>
-                    <input
-                      type='text'
-                      className='form-control'
-                      placeholder='Full Name'
-                    />
-                  </div>
-                  <div className='form-group'>
-                    <input
-                      type='email'
-                      className='form-control'
-                      placeholder='Email'
-                    />
-                  </div>
-                  <div className='form-group'>
-                    <button type='submit' className='btn btn-primary'>
-                      Register
-                    </button>
-                  </div>
-                </form>
+                <RegisterForm />
               </div>
             </div>
           </div>
