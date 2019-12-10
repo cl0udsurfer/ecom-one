@@ -96,7 +96,7 @@ const ManageProducts = () => {
     return (
       <div
         style={{ display: loading ? '' : 'none' }}
-        class='alert alert-success'
+        className='alert alert-success'
         role='alert'
       >
         Product added successfully
@@ -108,7 +108,7 @@ const ManageProducts = () => {
     return (
       <div
         style={{ display: error ? '' : 'none' }}
-        class='alert alert-danger'
+        className='alert alert-danger'
         role='alert'
       >
         {error}
@@ -118,41 +118,44 @@ const ManageProducts = () => {
 
   return (
     <LayoutMain>
-      <main class='overflow-hidden'>
-        <section class='page header bg-dark section'>
-          <div class='container'>
-            <div class='row gap-y align-items-center text-center text-md-left'>
-              <div class='col-md-10'>
-                <h1 class='regular text-contrast'>Admin Dashboard</h1>
+      <main className='overflow-hidden'>
+        <section className='page header bg-dark section'>
+          <div className='container'>
+            <div className='row gap-y align-items-center text-center text-md-left'>
+              <div className='col-md-10'>
+                <h1 className='regular text-contrast'>Admin Dashboard</h1>
               </div>
             </div>
           </div>
         </section>
-        <section class='section'>
-          <div class='container pt-0 mt-5'>
-            <section class='section bg-light'>
-              <div class='container bring-to-front py-0'>
-                <div class='shadow bg-contrast p-5 rounded'>
-                  <div class='row gap-y text-lg-left'>
-                    <div class='col-12 px-5 b-md-r'>
+        <section className='section'>
+          <div className='container pt-0 mt-5'>
+            <section className='section bg-light'>
+              <div className='container bring-to-front py-0'>
+                <div className='shadow bg-contrast p-5 rounded'>
+                  <div className='row gap-y text-lg-left'>
+                    <div className='col-12 px-5 b-md-r'>
                       {showError()}
                       {showLoading()}
-                      <h4 class='mr-3 mb-3'>Add Product</h4>
-                      <form onSubmit={clickSubmit} class='form form-contact'>
-                        <div class='form-group'>
-                          <label for='contact_email' class='bold mb-0'>
+                      <h4 className='mr-3 mb-3'>Add Product</h4>
+                      <form
+                        onSubmit={clickSubmit}
+                        className='form form-contact'
+                      >
+                        <div className='form-group'>
+                          <label for='contact_email' className='bold mb-0'>
                             Upload Photo
                           </label>
                           <input
                             type='file'
                             name='photo'
-                            class='form-control bg-contrast'
+                            className='form-control bg-contrast'
                             onChange={handleChange('photo')}
                             accept='image/*'
                           />
                         </div>
-                        <div class='form-group'>
-                          <label for='contact_email' class='bold mb-0'>
+                        <div className='form-group'>
+                          <label for='contact_email' className='bold mb-0'>
                             Name
                           </label>
                           <input
@@ -160,12 +163,12 @@ const ManageProducts = () => {
                             onChange={handleChange('name')}
                             placeholder='Name'
                             value={name}
-                            class='form-control bg-contrast'
+                            className='form-control bg-contrast'
                             required
                           />
                         </div>
-                        <div class='form-group'>
-                          <label for='contact_email' class='bold'>
+                        <div className='form-group'>
+                          <label for='contact_email' className='bold'>
                             Description
                           </label>
                           <textarea
@@ -174,13 +177,13 @@ const ManageProducts = () => {
                             placeholder='Description'
                             value={description}
                             id='contact_message'
-                            class='form-control bg-contrast'
+                            className='form-control bg-contrast'
                             rows='6'
                             required
                           ></textarea>
                         </div>
-                        <div class='form-group'>
-                          <label for='contact_email' class='bold mb-1'>
+                        <div className='form-group'>
+                          <label for='contact_email' className='bold mb-1'>
                             Select Category
                           </label>
                           <br />
@@ -197,8 +200,8 @@ const ManageProducts = () => {
                               ))}
                           </select>
                         </div>
-                        <div class='form-group'>
-                          <label for='contact_email' class='bold mb-0'>
+                        <div className='form-group'>
+                          <label for='contact_email' className='bold mb-0'>
                             Price
                           </label>
                           <input
@@ -207,12 +210,12 @@ const ManageProducts = () => {
                             onChange={handleChange('price')}
                             placeholder='Price'
                             value={price}
-                            class='form-control bg-contrast'
+                            className='form-control bg-contrast'
                             required
                           />
                         </div>
-                        <div class='form-group'>
-                          <label for='contact_email' class='bold mb-0'>
+                        <div className='form-group'>
+                          <label for='contact_email' className='bold mb-0'>
                             Quantity
                           </label>
                           <input
@@ -221,15 +224,15 @@ const ManageProducts = () => {
                             onChange={handleChange('quantity')}
                             placeholder='Quantity'
                             value={quantity}
-                            class='form-control bg-contrast'
+                            className='form-control bg-contrast'
                             required
                           />
                         </div>
-                        <div class='form-group'>
+                        <div className='form-group'>
                           <button
                             id='contact-submit'
                             type='submit'
-                            class='btn btn-primary btn-rounded mb-2'
+                            className='btn btn-primary btn-rounded mb-2'
                           >
                             Add Product
                           </button>
@@ -245,14 +248,14 @@ const ManageProducts = () => {
           </div>
         </section>
 
-        <section class='section'>
-          <div class='container pt-0'>
-            <section class='section bg-light'>
-              <div class='container bring-to-front py-0'>
-                <div class='shadow bg-contrast p-5 rounded'>
-                  <div class='row gap-y text-lg-left'>
-                    <div class='col-12 px-5 b-md-r'>
-                      <h4 class='mr-3 mb-3'>Products</h4>
+        <section className='section'>
+          <div className='container pt-0'>
+            <section className='section bg-light'>
+              <div className='container bring-to-front py-0'>
+                <div className='shadow bg-contrast p-5 rounded'>
+                  <div className='row gap-y text-lg-left'>
+                    <div className='col-12 px-5 b-md-r'>
+                      <h4 className='mr-3 mb-3'>Products</h4>
                       {products.map((product, i) => (
                         <ProductList key={i} product={product} />
                       ))}

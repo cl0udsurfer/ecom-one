@@ -1,5 +1,7 @@
 import React, { Fragment, useState, useEffect } from 'react';
 
+import OrderSummary from './OrderSummary';
+
 const LayoutCheckout = ({
   title = 'Title',
   description = 'Description',
@@ -31,6 +33,7 @@ const LayoutCheckout = ({
           </div>
         </section>
         {children}
+
         <div class='position-relative'>
           <div class='shape-divider shape-divider-bottom shape-divider-fluid-x text-dark'>
             <svg viewBox='0 0 2880 48' xmlns='http://www.w3.org/2000/svg'>
