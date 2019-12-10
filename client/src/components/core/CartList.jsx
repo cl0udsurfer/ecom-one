@@ -2,7 +2,7 @@ import React from 'react';
 
 import { removeItem } from '../../api/cart';
 
-const CartList = ({ item }) => {
+const CartList = ({ items }) => {
   return (
     <div class='row border-bottom py-4'>
       <div class='col-md-8 col-lg-9 col-xl-10'>
@@ -17,16 +17,16 @@ const CartList = ({ item }) => {
           </a>
           <div class='media-body'>
             <a class='product-category text-muted font-xs' href='javascript:;'>
-              {item.category.name}
+              Category
             </a>
             <h6 class='product-title bold'>
               <a href='javascript:;' class='text-darker'>
-                {item.name}
+                {items.name}
               </a>
             </h6>
-            <p class='my-0 text-muted small'>{item.description}</p>
+            <p class='my-0 text-muted small'>{items.description}</p>
             <div class='text-primary light lead mt-3'>
-              <span>${item.price}</span>
+              <span>${items.price}</span>
             </div>
           </div>
         </div>
@@ -47,7 +47,7 @@ const CartList = ({ item }) => {
           </div>
           <button
             onClick={() => {
-              removeItem(item._id);
+              removeItem(items._id);
               window.location.reload();
             }}
             class='btn btn-link px-0 text-danger'

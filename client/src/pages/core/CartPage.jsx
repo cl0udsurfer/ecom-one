@@ -16,7 +16,6 @@ const CartPage = () => {
   }, []);
 
   const showItemsLength = cartItems => {
-    console.log(cartItems);
     return <p class='mb-0 text-muted'>{items.length} items</p>;
   };
 
@@ -51,8 +50,8 @@ const CartPage = () => {
                 >
                   <i class='fas fa-redo mr-2'></i>Update cart
                 </button>
-                {items.map((item, i) => {
-                  return <CartList key={i} item={item} />;
+                {items.map((items, i) => {
+                  return <CartList key={i} items={items} />;
                 })}
               </div>
               <aside class='col-lg-4 pt-4 pt-lg-0'>
