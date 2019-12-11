@@ -7,7 +7,6 @@ import {
 } from '../../api/user';
 import { getCart } from '../../api/cart';
 
-import LayoutCheckout from '../../components/checkout/LayoutCheckout';
 import CheckoutDetails from '../../components/checkout/CheckoutDetails';
 import CheckoutPayment from '../../components/checkout/CheckoutPayment';
 import CheckoutConfirm from '../../components/checkout/CheckoutConfirm';
@@ -29,6 +28,16 @@ const CheckoutPage = () => {
 
   const getCartItems = () => {
     let cart = getCart();
+    console.log(cart);
+    let sum = cart
+      .map(o => o.price)
+      .reduce((a, c) => {
+        return a + c;
+      });
+    console.log(sum);
+    let tax = sum * 0.19;
+    let total = (Math.round((sum + tax) * 100) / 100).toFixed(2);
+    setPrices({ ...prices, subtotal: sum, taxes: tax, total: total });
     setCartItems(cart);
   };
 
@@ -40,16 +49,19 @@ const CheckoutPage = () => {
     postalCode: '',
     city: '',
     state: '',
-    shipping: '0',
+
     instance: {},
-    subtotal: '',
-    total: '',
     error: '',
     loading: false,
     success: false,
     braintreeClientToken: ''
   });
   const [cartItems, setCartItems] = useState([]);
+  const [prices, setPrices] = useState({
+    subtotal: 0,
+    taxes: 0,
+    total: 0
+  });
 
   const {
     step,
@@ -59,16 +71,16 @@ const CheckoutPage = () => {
     postalCode,
     city,
     state,
-    shipping,
-    subtotal,
-    total,
     error,
     success,
     loading,
     braintreeClientToken
   } = values;
 
+  const { subtotal, taxes, total } = prices;
+
   useEffect(() => {
+    // Fix SubTotal and Taxes Calculation -> setValues
     getToken(userId, token);
     getCartItems();
   }, []);
@@ -140,7 +152,11 @@ const CheckoutPage = () => {
           <div className='container pt-0 mt-n8'>
             <div className='row'>
               {switchOperator(step)}
-              <OrderSummary cartItems={cartItems} values={values} />
+              <OrderSummary
+                cartItems={cartItems}
+                values={values}
+                prices={prices}
+              />
             </div>
           </div>
         </section>

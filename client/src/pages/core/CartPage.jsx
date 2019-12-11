@@ -28,12 +28,7 @@ const CartPage = () => {
               <div class='col-md-10'>
                 <h1 class='regular text-contrast'>Your cart</h1>
               </div>
-              <div class='col-md-2'>
-                <h2 class='h1 text-contrast'>
-                  $654.<sup>00</sup>
-                </h2>
-                {showItemsLength()}
-              </div>
+              <div class='col-md-2'>{showItemsLength()}</div>
             </div>
           </div>
         </section>
@@ -57,127 +52,6 @@ const CartPage = () => {
               <aside class='col-lg-4 pt-4 pt-lg-0'>
                 <div class='card shadow border-0 rounded-lg'>
                   <div class='card-body'>
-                    <div
-                      class='accordion accordion-clean accordion-collapsed'
-                      id='cart-options'
-                    >
-                      <div class='card'>
-                        <div class='card-header'>
-                          <a
-                            href='#'
-                            class='card-title btn bold'
-                            data-toggle='collapse'
-                            data-target='#clp-shipping'
-                          >
-                            <i class='fas fa-angle-down angle'></i>Shipping
-                            Options
-                          </a>
-                        </div>
-                        <div
-                          id='clp-shipping'
-                          class='collapse show'
-                          data-parent='#cart-options'
-                        >
-                          <div class='card-body'>
-                            <form
-                              class='form form-check-list'
-                              method='post'
-                              novalidate
-                            >
-                              <div class='form-group shadow-box p-3'>
-                                <div class='d-flex flex-column flex-sm-row align-items-sm-center'>
-                                  <div>
-                                    <div class='radio radio-primary'>
-                                      <input
-                                        class='form-control'
-                                        type='radio'
-                                        id='free-shipping'
-                                        name='shipping-options'
-                                      />{' '}
-                                      <label
-                                        class='control-label text-darker'
-                                        for='free-shipping'
-                                      >
-                                        Free Shipping
-                                      </label>
-                                    </div>
-                                    <p class='small text-muted my-0'>
-                                      1 month - Tuesday, Dec 3rd 2019
-                                    </p>
-                                  </div>
-                                  <div class='ml-sm-auto'>
-                                    <span class='font-sm text-primary'>
-                                      $0.00
-                                    </span>
-                                  </div>
-                                </div>
-                              </div>
-                              <div class='form-group shadow-box p-3'>
-                                <div class='d-flex flex-column flex-sm-row align-items-sm-center'>
-                                  <div>
-                                    <div class='radio radio-primary'>
-                                      <input
-                                        class='form-control'
-                                        type='radio'
-                                        id='standard-shipping'
-                                        name='shipping-options'
-                                      />{' '}
-                                      <label
-                                        class='control-label text-darker'
-                                        for='standard-shipping'
-                                      >
-                                        Standard Shipping
-                                      </label>
-                                    </div>
-                                    <p class='small text-muted my-0'>
-                                      2 weeks - Tuesday, Dec 3rd 2019
-                                    </p>
-                                  </div>
-                                  <div class='ml-sm-auto'>
-                                    <span class='font-sm text-primary'>
-                                      $9.99
-                                    </span>
-                                  </div>
-                                </div>
-                              </div>
-                              <div class='form-group shadow-box p-3'>
-                                <div class='d-flex flex-column flex-sm-row align-items-sm-center'>
-                                  <div>
-                                    <div class='radio radio-primary'>
-                                      <input
-                                        class='form-control'
-                                        type='radio'
-                                        id='express-shipping'
-                                        name='shipping-options'
-                                      />{' '}
-                                      <label
-                                        class='control-label text-darker'
-                                        for='express-shipping'
-                                      >
-                                        Express Shipping
-                                      </label>
-                                    </div>
-                                    <p class='small text-muted my-0'>
-                                      3 days - Tuesday, Dec 3rd 2019
-                                    </p>
-                                  </div>
-                                  <div class='ml-sm-auto'>
-                                    <span class='font-sm text-primary'>
-                                      $29.99
-                                    </span>
-                                  </div>
-                                </div>
-                              </div>
-                            </form>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                    <hr class='my-4' />
-                    <div class='d-flex flex-wrap'>
-                      <p class='bold text-darker text-uppercase'>Total</p>
-                      <p class='h5 bold price ml-sm-auto'>$654.00</p>
-                    </div>
                     {isAuthenticated() && (
                       <Link
                         to='/checkout'

@@ -33,18 +33,6 @@ const CartList = ({ items }) => {
       </div>
       <div class='col-md-4 col-lg-3 col-xl-2'>
         <form class='form text-center text-sm-left'>
-          <div class='form-group mb-0'>
-            <label class='control-label font-sm text-dark' for='q1'>
-              Quantity
-            </label>
-            <select class='form-control' id='q1'>
-              <option value='1'>1</option>
-              <option value='2'>2</option>
-              <option value='3'>3</option>
-              <option value='4'>4</option>
-              <option value='5'>5</option>
-            </select>
-          </div>
           <button
             onClick={() => {
               removeItem(items._id);

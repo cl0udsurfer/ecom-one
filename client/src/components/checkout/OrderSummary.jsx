@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from 'react';
 
-const OrderSummary = ({ values, cartItems }) => {
+const OrderSummary = ({ values, cartItems, prices }) => {
   let step = values.step;
+
   switch (step) {
     case 1:
     case 2:
@@ -48,22 +49,18 @@ const OrderSummary = ({ values, cartItems }) => {
               <ul className='list-unstyled font-size-sm pb-2 border-bottom'>
                 <li className='d-flex justify-content-between align-items-center'>
                   <span className='mr-2'>Subtotal:</span>
-                  <span className='text-right'>$654</span>
-                </li>
-                <li className='d-flex justify-content-between align-items-center'>
-                  <span className='mr-2'>Shipping:</span>
-                  <span className='text-right'>${values.shipping}</span>
+                  <span className='text-right'>${prices.subtotal}</span>
                 </li>
                 <li className='d-flex justify-content-between align-items-center'>
                   <span className='mr-2'>Taxes:</span>
-                  <span className='text-right'>$3</span>
+                  <span className='text-right'>${prices.taxes}</span>
                 </li>
                 <li className='d-flex justify-content-between align-items-center'>
                   <span className='mr-2'>Discount:</span>
                   <span className='text-right'>—</span>
                 </li>
               </ul>
-              <h3 className='text-right my-4'>$657</h3>
+              <h3 className='text-right my-4'>${prices.total}</h3>
             </div>
           </div>
         </aside>
@@ -78,15 +75,11 @@ const OrderSummary = ({ values, cartItems }) => {
               <ul className='list-unstyled font-sm pb-2 border-bottom'>
                 <li className='d-flex justify-content-between align-items-center'>
                   <span className='mr-2'>Subtotal:</span>
-                  <span className='text-right'>$654</span>
-                </li>
-                <li className='d-flex justify-content-between align-items-center'>
-                  <span className='mr-2'>Shipping:</span>
-                  <span className='text-right'>${values.shipping}</span>
+                  <span className='text-right'>${prices.subtotal}</span>
                 </li>
                 <li className='d-flex justify-content-between align-items-center'>
                   <span className='mr-2'>Taxes:</span>
-                  <span className='text-right'>$3</span>
+                  <span className='text-right'>${prices.taxes}</span>
                 </li>
                 <li className='d-flex justify-content-between align-items-center'>
                   <span className='mr-2'>Discount:</span>
@@ -95,7 +88,7 @@ const OrderSummary = ({ values, cartItems }) => {
               </ul>
               <h4 className='d-flex align-items-center mt-2 mb-4 text-success'>
                 <span className='mr-auto h6 mb-0'>Total Amount</span>
-                <span>$657</span>
+                <span>${prices.total}</span>
               </h4>
             </div>
             <div className='card-body'>
@@ -106,9 +99,7 @@ const OrderSummary = ({ values, cartItems }) => {
                   <span className='font-sm text-primary'>$0.00</span>
                 </div>
               </div>
-              <p className='small text-muted my-0'>
-                1 month - Tuesday, Dec 3rd 2019
-              </p>
+              <p className='small text-muted my-0'>2 weeks duration</p>
             </div>
             <div className='card-body'>
               <h6 className='mb-4 text-uppercase'>Shipping Address</h6>
