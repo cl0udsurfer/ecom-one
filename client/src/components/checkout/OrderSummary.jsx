@@ -1,6 +1,13 @@
 import React, { useState, useEffect } from 'react';
 
-const OrderSummary = ({ values, cartItems, prices }) => {
+const OrderSummary = ({
+  values,
+  cartItems,
+  prices,
+  buy,
+  setRun = f => f,
+  run = undefined
+}) => {
   let step = values.step;
 
   switch (step) {
@@ -119,7 +126,9 @@ const OrderSummary = ({ values, cartItems, prices }) => {
               <p className='mr-2'>Credit Card</p>
             </div>
           </div>
-          <button className='btn btn-primary btn-block'>Place Order</button>
+          <button onClick={buy} className='btn btn-primary btn-block'>
+            Place Order
+          </button>
           <p className='text-muted small'>
             Once you click 'Place Order' your credit card will be charged for
             the total amount

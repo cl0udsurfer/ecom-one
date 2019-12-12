@@ -2,10 +2,10 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import OrderSummary from './OrderSummary';
 
-const CheckoutDetails = ({ values, handleChange, nextStep, cartItems }) => {
+const CheckoutDetails = ({ values, handleChange, nextStep }) => {
   return (
     <div className='col-lg-8 pt-9'>
-      <h4 className='mb-4 pb-3'>Shipping Information</h4>
+      <h4 className='mb-4 pb-3 mt-3'>Shipping Information</h4>
       <form className='cozy'>
         <label className='control-label bold small text-uppercase text-secondary'>
           First Name

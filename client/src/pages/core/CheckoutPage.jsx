@@ -49,7 +49,6 @@ const CheckoutPage = () => {
     postalCode: '',
     city: '',
     state: '',
-
     instance: {},
     error: '',
     loading: false,
@@ -62,6 +61,7 @@ const CheckoutPage = () => {
     taxes: 0,
     total: 0
   });
+  const [run, setRun] = useState(false);
 
   const {
     step,
@@ -97,6 +97,55 @@ const CheckoutPage = () => {
 
   const handleChange = name => event => {
     setValues({ ...values, [name]: event.target.value });
+  };
+
+  const buy = () => {
+    let nonce;
+    let getNonce = values.instance
+      .requestPaymentMethod()
+      .then(data => {
+        nonce = data.nonce;
+        const paymentData = {
+          paymentMethodNonce: nonce,
+          amount: prices.total
+        };
+
+        processPayment(userId, token, paymentData)
+          .then(response => {
+            console.log(response);
+
+            const createOrderData = {
+              firstName: values.firstName,
+              lastName: values.lastName,
+              address: values.address,
+              postalCode: values.postalCode,
+              city: values.city,
+              state: values.state,
+              orderedProducts: cartItems,
+              transactionId: response.transaction.id,
+              amount: response.transaction.amount
+            };
+
+            createOrder(userId, token, createOrderData)
+              .then(response => {
+                console.log('payment success', response);
+
+                setValues({ loading: false, success: true });
+              })
+              .catch(error => {
+                console.log(error, '1');
+                setValues({ loading: false });
+              });
+          })
+          .catch(error => {
+            console.log(error, '2');
+            setValues({ loading: false });
+          });
+      })
+      .catch(error => {
+        console.log(error, '3');
+        setValues({ ...values, error: error.message });
+      });
   };
 
   const switchOperator = step => {
@@ -156,6 +205,8 @@ const CheckoutPage = () => {
                 cartItems={cartItems}
                 values={values}
                 prices={prices}
+                buy={buy}
+                run={run}
               />
             </div>
           </div>

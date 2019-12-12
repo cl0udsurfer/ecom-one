@@ -4,7 +4,7 @@ import OrderSummary from './OrderSummary';
 
 const CheckoutConfirm = ({ cartItems }) => {
   return (
-    <div className='col-lg-8 pt-9'>
+    <div className='col-lg-8 pt-9 mt-3'>
       <h4 className='mb-5'>Confirm your Order</h4>
       {cartItems.map((items, i) => (
         <div className='row border-bottom py-4' key={i}>

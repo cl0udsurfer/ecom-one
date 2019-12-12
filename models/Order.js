@@ -1,6 +1,9 @@
 const mongoose = require('mongoose');
 
 const OrderSchema = new mongoose.Schema({
+  transactionId: {
+    type: String
+  },
   firstName: {
     type: String,
     required: true,
@@ -46,6 +49,14 @@ const OrderSchema = new mongoose.Schema({
   orderedProducts: {
     type: Array,
     default: []
+  },
+  amount: {
+    type: String,
+    default: 0
+  },
+  createdAt: {
+    type: Date,
+    default: Date.now
   }
 });
 

@@ -12,6 +12,7 @@
     "@testing-library/user-event": "^7.1.2",
     "aos": "^2.3.4",
     "bootstrap": "^4.4.1",
+    "braintree-web-drop-in-react": "^1.1.0",
     "feather-icons": "^4.24.1",
     "jquery": "^3.4.1",
     "react": "^16.12.0",
