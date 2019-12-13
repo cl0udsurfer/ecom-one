@@ -3888,7 +3888,7 @@ input[type="button"].btn-block {
   -webkit-box-pack: justify;
       -ms-flex-pack: justify;
           justify-content: space-between;
-  padding: 0.5rem 1rem; }
+  padding: 1.5rem 1rem; }
   .navbar > .container,
   .navbar > .container-fluid {
     display: -webkit-box;
@@ -17901,8 +17901,10 @@ main {
     font-family: "Poppins", sans-serif;
     font-size: 0.9rem;
     font-weight: 700;
-    -webkit-transition: color 0.3s ease-in-out, background-color 0.3s ease-in-out, opacity 0.3s ease-in-out;
-    transition: color 0.3s ease-in-out, background-color 0.3s ease-in-out, opacity 0.3s ease-in-out;
+    -webkit-transition: color 0.3s ease-in-out, background-color 0.3s ease-in-out,
+ opacity 0.3s ease-in-out;
+    transition: color 0.3s ease-in-out, background-color 0.3s ease-in-out,
+ opacity 0.3s ease-in-out;
     text-decoration: none;
     letter-spacing: 1px;
     padding: 1rem; }

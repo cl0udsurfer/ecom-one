@@ -24,7 +24,9 @@ const CartList = ({ items }) => {
                 {items.name}
               </a>
             </h6>
-            <p class='my-0 text-muted small'>{items.description}</p>
+            <p class='my-0 text-muted small'>
+              {items.description.substring(0, 50)}
+            </p>
             <div class='text-primary light lead mt-3'>
               <span>${items.price}</span>
             </div>

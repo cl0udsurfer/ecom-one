@@ -56,7 +56,10 @@ const ProductPage = props => {
                           alt=''
                         />
                       </div>
-                      <div class='col-12 col-md-6 py-4 px-5'>
+                      <div
+                        class='
+                      col-6 py-4 px-5'
+                      >
                         <i
                           data-feather='code'
                           width='36'
@@ -66,9 +69,7 @@ const ProductPage = props => {
 
                         <h4 class='mr-3'>Description</h4>
 
-                        <p class='mt-4'>
-                          <p>{product.description}</p>
-                        </p>
+                        <p class='mt-4'>{product.description}</p>
                       </div>
                     </div>
                   </div>

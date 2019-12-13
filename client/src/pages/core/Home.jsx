@@ -184,12 +184,6 @@ const Home = () => {
             </div>
           </div>
           <div className='swiper-pagination highlight-active text-md-right pr-md-6 pb-5 mb-5 mb-md-0'></div>
-          <div className='swiper-button-prev rounded-circle bg-contrast shadow'>
-            <i data-feather='arrow-left'></i>
-          </div>
-          <div className='swiper-button-next rounded-circle bg-contrast shadow'>
-            <i data-feather='arrow-right'></i>
-          </div>
         </div>
       </section>
 
