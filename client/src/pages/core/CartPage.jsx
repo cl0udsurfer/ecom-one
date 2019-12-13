@@ -7,6 +7,7 @@ import { isAuthenticated } from '../../api/auth';
 import { getCart } from '../../api/cart';
 
 const CartPage = () => {
+  const [success, setSuccess] = useState(false);
   const [items, setItems] = useState([]);
 
   useEffect(() => {
@@ -17,6 +18,18 @@ const CartPage = () => {
 
   const showItemsLength = cartItems => {
     return <p class='mb-0 text-muted'>{items.length} items</p>;
+  };
+
+  const removeAlert = () => {
+    return (
+      <div
+        style={{ display: success ? '' : 'none' }}
+        class='alert alert-warning'
+        role='alert'
+      >
+        Product removed from Cart
+      </div>
+    );
   };
 
   return (
@@ -45,6 +58,7 @@ const CartPage = () => {
                 >
                   <i class='fas fa-redo mr-2'></i>Update cart
                 </button>
+                {removeAlert()}
                 {items.map((items, i) => {
                   return <CartList key={i} items={items} />;
                 })}

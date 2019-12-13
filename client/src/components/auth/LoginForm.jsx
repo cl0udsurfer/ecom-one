@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Redirect } from 'react-router-dom';
 
-import { login, authenticate } from '../../api/auth';
+import { login, authenticate, isAuthenticated } from '../../api/auth';
 
 const LoginForm = () => {
   const [values, setValues] = useState({
@@ -13,6 +13,7 @@ const LoginForm = () => {
   });
 
   const { email, password, loading, error, redirectToReferrer } = values;
+  const { user } = isAuthenticated();
 
   const handleChange = name => event => {
     setValues({ ...values, error: false, [name]: event.target.value });
@@ -61,12 +62,20 @@ const LoginForm = () => {
 
   const redirectUser = () => {
     if (redirectToReferrer) {
+      if (user && user.role === 1) {
+        return <Redirect to='/admin/dashboard' />;
+      } else {
+        return <Redirect to='/user/dashboard' />;
+      }
+    }
+    if (isAuthenticated()) {
       return <Redirect to='/' />;
     }
   };
 
   return (
     <form class='cozy'>
+      {redirectUser()}
       {showLoading()}
       {showError()}
       <label class='control-label bold small text-uppercase text-secondary'>

@@ -135,8 +135,6 @@ const ManageProducts = () => {
                 <div className='shadow bg-contrast p-5 rounded'>
                   <div className='row gap-y text-lg-left'>
                     <div className='col-12 px-5 b-md-r'>
-                      {showError()}
-                      {showLoading()}
                       <h4 className='mr-3 mb-3'>Add Product</h4>
                       <form
                         onSubmit={clickSubmit}
@@ -239,6 +237,8 @@ const ManageProducts = () => {
                           <br />
                           Or <Link to='/admin/dashboard'>Go back</Link>
                         </div>
+                        {showError()}
+                        {showLoading()}
                       </form>
                     </div>
                   </div>
@@ -256,6 +256,15 @@ const ManageProducts = () => {
                   <div className='row gap-y text-lg-left'>
                     <div className='col-12 px-5 b-md-r'>
                       <h4 className='mr-3 mb-3'>Products</h4>
+                      <button
+                        onClick={() => {
+                          window.location.reload();
+                        }}
+                        class='btn btn-outline-primary btn-block mt-4'
+                        type='button'
+                      >
+                        <i class='fas fa-redo mr-2'></i>Update List
+                      </button>
                       {products.map((product, i) => (
                         <ProductList key={i} product={product} />
                       ))}

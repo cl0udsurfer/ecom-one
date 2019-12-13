@@ -141,6 +141,15 @@ const ManageCategories = () => {
                   <div class='row gap-y text-lg-left'>
                     <div class='col-12 px-5 b-md-r'>
                       <h4 class='mr-3 mb-3'>Categories</h4>
+                      <button
+                        onClick={() => {
+                          window.location.reload();
+                        }}
+                        class='btn btn-outline-primary btn-block mt-4'
+                        type='button'
+                      >
+                        <i class='fas fa-redo mr-2'></i>Update List
+                      </button>
                       {categories.map((category, i) => (
                         <CategoryList key={i} category={category} />
                       ))}

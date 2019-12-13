@@ -11,6 +11,8 @@ import UserDashboard from './pages/user/UserDashboard';
 import ManageProducts from './pages/admin/ManageProducts';
 import ManageCategories from './pages/admin/ManageCategories';
 import CheckoutPage from './pages/core/CheckoutPage';
+import CategoryPage from './pages/core/CategoryPage';
+import ProductPage from './pages/core/ProductPage';
 
 const Routes = () => {
   return (
@@ -39,6 +41,8 @@ const Routes = () => {
           />
           <PrivateRoute path='/checkout' exact component={CheckoutPage} />
           <Route path='/' exact component={Home} />
+          <Route path='/category/:categoryId' exact component={CategoryPage} />
+          <Route path='/product/:productId' exact component={ProductPage} />
           <Route path='/login' exact component={LoginPage} />
           <Route path='/register' exact component={RegisterPage} />
           <Route path='/cart' exact component={CartPage} />
