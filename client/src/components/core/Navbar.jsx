@@ -10,11 +10,17 @@ const Navbar = ({ categories }) => {
     <header className='header-global'>
       <nav
         id='navbar-main'
-        className='navbar navbar-main navbar-expand-lg navbar-light headroom'
+        className='navbar navbar-main navbar-expand-lg navbar-light bg-light'
       >
         <div className='container'>
           <a className='navbar-brand mr-lg-5' href='/'>
-            <img src='/assets/img/logunion/logunion.png' />
+            <img
+              src='/assets/img/logo.png'
+              style={{
+                width: '200px',
+                height: 'auto'
+              }}
+            />
           </a>
           <button
             className='navbar-toggler'
@@ -32,7 +38,13 @@ const Navbar = ({ categories }) => {
               <div className='row'>
                 <div className='col-6 collapse-brand'>
                   <Link to='/'>
-                    <img src='/assets/img/logunion/logunion.png' />
+                    <img
+                      src='assets/img/logo.png'
+                      style={{
+                        width: '200px',
+                        height: 'auto'
+                      }}
+                    />
                   </Link>
                 </div>
                 <div className='col-6 collapse-close'>
@@ -70,7 +82,7 @@ const Navbar = ({ categories }) => {
               </li>
               <li className='nav-item dropdown'>
                 <a className='nav-link' data-toggle='dropdown' role='button'>
-                  <i className='ni ni-ui-04 d-lg-none'></i>
+                  <i class='fas fa-chevron-circle-down mr-0'></i>
                   <span className='nav-link-inner--text'>Categories</span>
                 </a>
                 <div className='dropdown-menu dropdown-menu-xl'>
@@ -98,7 +110,9 @@ const Navbar = ({ categories }) => {
                   data-toggle=''
                   role='button'
                 >
-                  <span className='nav-link-inner--text'>Cart</span>
+                  <span className='nav-link-inner--text'>
+                    <i class='fas fa-shopping-cart m-1'></i>Cart
+                  </span>
                 </Link>
               </li>
 
@@ -109,48 +123,59 @@ const Navbar = ({ categories }) => {
                   data-toggle='dropdown'
                   id='navbarDropdownMenuLink2'
                 >
-                  <i className='ni ni-world-2'></i>
+                  <i class='fas fa-user-cog'> </i>
                 </a>
                 <ul
                   className='dropdown-menu'
                   aria-labelledby='navbarDropdownMenuLink2'
                 >
                   {!isAuthenticated() && (
-                    <li>
-                      <Link className='dropdown-item' to='/login'>
-                        Login
-                      </Link>
+                    <li class='st-nav-section st-nav-secondary nav-item'>
+                      <a class='btn btn-rounded btn-outline' href='/login'>
+                        <i class='fas fa-sign-in-alt d-none d-md-inline mr-md-0 mr-lg-2'></i>
+                        <span class='d-md-none d-lg-inline'>Login</span>
+                      </a>
                     </li>
                   )}
                   {!isAuthenticated() && (
-                    <li>
-                      <Link className='dropdown-item' to='/register'>
-                        Register
-                      </Link>
+                    <li class='st-nav-section st-nav-secondary nav-item'>
+                      <a class='btn btn-rounded btn-solid' href='/register'>
+                        <i class='fas fa-user-plus d-none d-md-inline mr-md-0'></i>
+                        <span class='d-md-none d-lg-inline'> Register</span>
+                      </a>
                     </li>
                   )}
                   {isAuthenticated() && isAuthenticated().user.role === 0 && (
-                    <li>
-                      <Link className='dropdown-item' to='/user/dashboard'>
-                        Dashboard
+                    <li class='st-nav-section st-nav-secondary nav-item'>
+                      <Link
+                        class='btn btn-rounded btn-outline'
+                        to='/user/dashboard'
+                      >
+                        <i class='fas fa-columns'> </i>
+                        <span class='d-md-none d-lg-inline'> Dashboard</span>
                       </Link>
                     </li>
                   )}
                   {isAuthenticated() && isAuthenticated().user.role === 1 && (
-                    <li>
-                      <Link className='dropdown-item' to='/admin/dashboard'>
-                        Dashboard
+                    <li class='st-nav-section st-nav-secondary nav-item'>
+                      <Link
+                        class='btn btn-rounded btn-outline'
+                        to='/admin/dashboard'
+                      >
+                        <i class='fas fa-columns'> </i>
+                        <span class='d-md-none d-lg-inline'> Dashboard</span>
                       </Link>
                     </li>
                   )}
                   {isAuthenticated() && (
-                    <li>
+                    <li class='st-nav-section st-nav-secondary nav-item'>
                       <Link
                         onClick={() => logout()}
-                        className='dropdown-item'
+                        class='btn btn-rounded btn-outline'
                         to='/'
                       >
-                        Logout
+                        <i class='fas fa-sign-out-alt'> </i>
+                        <span class='d-md-none d-lg-inline'> Logout</span>
                       </Link>
                     </li>
                   )}

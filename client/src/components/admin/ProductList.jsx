@@ -26,7 +26,9 @@ const ProductList = ({ product }) => {
                 {product.name}
               </a>
             </h6>
-            <p class='my-0 text-muted small'>{product.description}</p>
+            <p class='my-0 text-muted small'>
+              {product.description.substring(0, 50)}
+            </p>
             <div class='text-primary light lead mt-3'>
               <span>${product.price}</span>
             </div>

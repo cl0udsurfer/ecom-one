@@ -5,6 +5,7 @@ import RegisterForm from '../../components/auth/RegisterForm';
 import ProductCard from '../../components/core/ProductCard';
 
 import { getProducts, getCategories } from '../../api/admin';
+import DealsCard from '../../components/core/DealsCard';
 
 const Home = () => {
   const [products, setProducts] = useState([]);
@@ -63,13 +64,13 @@ const Home = () => {
                   <div className='col-md-6 col-lg-4 ml-lg-auto'>
                     <div className='text-center text-lg-left text-lg-nowrap'>
                       <h4 className='text-light font-weight-light mb-0 pb-1'>
-                        What you were waiting for?
+                        Fast and Scalable
                       </h4>
                       <h1 className='text-contrast bold display-4'>
-                        The Headphones Collection
+                        Ecom-One Boilerplate
                       </h1>
                       <p className='lead text-light pb-3'>
-                        Discover our selection of the best Headphones
+                        Build with MERN Stack
                       </p>
                       <Link className='btn btn-primary' href='/shop'>
                         Shop Now
@@ -80,74 +81,7 @@ const Home = () => {
                 </div>
               </div>
             </div>
-            <div className='swiper-slide'>
-              <div
-                className='container-fluid pt-6 pb-9 py-md-0'
-                style={{ backgroundColor: 'rgb(92, 216, 217)' }}
-              >
-                <div className='row gap-y align-items-center'>
-                  <div className='col-md-6 col-lg-6 px-0 order-md-2'>
-                    <img
-                      className='img-responsive ml-auto'
-                      style={{ maxHeight: '620px' }}
-                      src='assets/img/shop/home/app-deals.jpg'
-                      alt='...'
-                    />
-                  </div>
-                  <div className='col-md-6 col-lg-4 ml-lg-auto'>
-                    <div className='text-center text-lg-left text-lg-nowrap'>
-                      <h4 className='text-light font-weight-light mb-0 pb-1'>
-                        Download the App
-                      </h4>
-                      <h1 className='text-contrast bold display-4'>
-                        Shop on the Go
-                      </h1>
-                      <p className='lead text-light pb-3'>
-                        Get the best of our store at your fingertips
-                      </p>
-                      <a className='btn btn-primary' href='javascript:;'>
-                        Shop Now
-                        <i className='fas fa-chevron-right ml-2 mr-n1'></i>
-                      </a>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div className='swiper-slide'>
-              <div
-                className='container-fluid pt-6 pb-9 py-md-0'
-                style={{ backgroundColor: 'rgb(240, 197, 87)' }}
-              >
-                <div className='row gap-y align-items-center'>
-                  <div className='col-md-6 col-lg-6 px-0 order-md-2'>
-                    <img
-                      className='img-responsive ml-auto'
-                      style={{ maxHeight: '620px' }}
-                      src='assets/img/shop/home/happy-girl.jpg'
-                      alt='...'
-                    />
-                  </div>
-                  <div className='col-md-6 col-lg-4 ml-lg-auto'>
-                    <div className='text-center text-lg-left text-lg-nowrap'>
-                      <h4 className='text-light font-weight-light mb-0 pb-1'>
-                        Enjoy your world
-                      </h4>
-                      <h1 className='text-contrast bold display-4'>
-                        What&#39;s makes you happy
-                      </h1>
-                      <p className='lead text-light pb-3'>
-                        We have all the products to make your life easier
-                      </p>
-                      <a className='btn btn-primary' href='javascript:;'>
-                        Shop Now
-                        <i className='fas fa-chevron-right ml-2 mr-n1'></i>
-                      </a>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
+
             <div className='swiper-slide'>
               <div
                 className='container-fluid pt-6 pb-9 py-md-0'
@@ -165,13 +99,13 @@ const Home = () => {
                   <div className='col-md-6 col-lg-4 ml-lg-auto'>
                     <div className='text-center text-lg-left text-lg-nowrap'>
                       <h4 className='text-light font-weight-light mb-0 pb-1'>
-                        Get them all
+                        Get it for free
                       </h4>
                       <h1 className='text-contrast bold display-4'>
-                        Best performing products
+                        It's Open-Source
                       </h1>
                       <p className='lead text-light pb-3'>
-                        We have what you&#39;re looking for in all tech industry
+                        Ecom-One is available on GitHub
                       </p>
                       <a className='btn btn-primary' href='javascript:;'>
                         Shop Now
@@ -194,75 +128,14 @@ const Home = () => {
               <div className='shadow-box shadow-hover bg-contrast p-3 rounded h-100'>
                 <p className='text-darker bold mt-0 d-flex'>
                   Weekend Deals
-                  <a href='javascript:;' className='small text-muted ml-auto'>
+                  <Link to='/shop' className='small text-muted ml-auto'>
                     View more
-                  </a>
+                  </Link>
                 </p>
                 <div className='row no-gutters text-center'>
-                  <div className='col-6 col-sm-3 d-flex flex-column pl-0 pr-2'>
-                    <a href='javascript:;' className='shadow-box p-2'>
-                      <img
-                        src='assets/img/shop/products/earphones.jpg'
-                        className='img-responsive rounded'
-                        alt=''
-                      />
-                      <p className='mb-0 d-flex flex-wrap align-items-center'>
-                        $
-                        <span className='price text-darker bold ml-1 mr-auto'>
-                          12.15
-                        </span>
-                        <span className='badge badge-danger'>25% Off</span>
-                      </p>
-                    </a>
-                  </div>
-                  <div className='col-6 col-sm-3 d-flex flex-column px-2'>
-                    <a href='javascript:;' className='shadow-box p-2'>
-                      <img
-                        src='assets/img/shop/products/speaker.jpg'
-                        className='img-responsive rounded'
-                        alt=''
-                      />
-                      <p className='mb-0 d-flex flex-wrap align-items-center'>
-                        $
-                        <span className='price text-darker bold ml-1 mr-auto'>
-                          1.45
-                        </span>
-                        <span className='badge badge-danger'>15% Off</span>
-                      </p>
-                    </a>
-                  </div>
-                  <div className='col-6 col-sm-3 d-flex flex-column px-2'>
-                    <a href='javascript:;' className='shadow-box p-2'>
-                      <img
-                        src='assets/img/shop/products/headphone.jpg'
-                        className='img-responsive rounded'
-                        alt=''
-                      />
-                      <p className='mb-0 d-flex flex-wrap align-items-center'>
-                        $
-                        <span className='price text-darker bold ml-1 mr-auto'>
-                          19.99
-                        </span>
-                        <span className='badge badge-danger'>45% Off</span>
-                      </p>
-                    </a>
-                  </div>
-                  <div className='col-6 col-sm-3 d-flex flex-column px-2'>
-                    <a href='javascript:;' className='shadow-box p-2'>
-                      <img
-                        src='assets/img/shop/products/vrglasses.jpg'
-                        className='img-responsive rounded'
-                        alt=''
-                      />
-                      <p className='mb-0 d-flex flex-wrap align-items-center'>
-                        $
-                        <span className='price text-darker bold ml-1 mr-auto'>
-                          29.99
-                        </span>
-                        <span className='badge badge-danger'>18% Off</span>
-                      </p>
-                    </a>
-                  </div>
+                  {products.slice(0, 4).map((product, i) => (
+                    <DealsCard key={i} product={product} />
+                  ))}
                 </div>
               </div>
             </div>
@@ -328,7 +201,7 @@ const Home = () => {
             <h3>What's Trending Now</h3>
           </div>
           <div class='row gap-y'>
-            {products.map((product, i) => (
+            {products.slice(0, 8).map((product, i) => (
               <ProductCard key={i} product={product} />
             ))}
           </div>
@@ -344,9 +217,9 @@ const Home = () => {
           <div class='row align-items-center'>
             <div class='col-md-6 text-center'>
               <h2 class='mb-3'>35% Off on Tech Gadgets</h2>
-              <a href='javascript:;' class='btn btn-lg btn-primary'>
+              <Link to='/shop' class='btn btn-lg btn-primary my-3'>
                 Shop Now
-              </a>
+              </Link>
             </div>
             <div class='col-md-6'>
               <p class='mt-0 text-muted'>

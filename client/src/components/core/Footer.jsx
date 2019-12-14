@@ -14,30 +14,7 @@ const Footer = ({ categories }) => {
       <footer className='site-footer section bg-dark'>
         <div className='container pb-5'>
           <div className='row'>
-            <div className='col-md-4'>
-              <h6 className='text-contrast'>All Products</h6>
-              <nav className='nav flex-column'>
-                <a className='nav-item py-1' href='#'>
-                  Headphones
-                </a>
-                <a className='nav-item py-1' href='#'>
-                  Portable Speakers
-                </a>
-                <a className='nav-item py-1' href='#'>
-                  Audio Accessories
-                </a>
-                <a className='nav-item py-1' href='#'>
-                  Earbuds
-                </a>
-                <a className='nav-item py-1' href='#'>
-                  Speakers
-                </a>
-                <a className='nav-item py-1' href='#'>
-                  Subwoofers
-                </a>
-              </nav>
-            </div>
-            <div className='col-md-4'>
+            <div className='col-md-6 mb-5'>
               <h6 className='text-contrast'>Categories</h6>
               <nav className='nav flex-column'>
                 {categories.map((c, i) => (
@@ -51,7 +28,7 @@ const Footer = ({ categories }) => {
                 ))}
               </nav>
             </div>
-            <div className='col-md-4'>
+            <div className='col-md-6'>
               <h6 className='text-contrast'>Information</h6>
               <nav className='nav flex-column'>
                 <a className='nav-item py-1' href='#'>
@@ -84,7 +61,7 @@ const Footer = ({ categories }) => {
                     alt=''
                   />
                 </div>
-                <h6 className='mt-3 mb-0 text-center text-light bold'>
+                <h6 className='my-3 mb-0 text-center text-light bold'>
                   Deals &amp; Promotions
                 </h6>
               </div>
@@ -96,7 +73,7 @@ const Footer = ({ categories }) => {
                     alt=''
                   />
                 </div>
-                <h6 className='mt-3 mb-0 text-center text-light bold'>
+                <h6 className='my-3 mb-0 text-center text-light bold'>
                   Free Shipping
                 </h6>
               </div>
@@ -108,7 +85,7 @@ const Footer = ({ categories }) => {
                     alt=''
                   />
                 </div>
-                <h6 className='mt-3 mb-0 text-center text-light bold'>
+                <h6 className='my-3 mb-0 text-center text-light bold'>
                   Easy Return
                 </h6>
               </div>
@@ -120,7 +97,7 @@ const Footer = ({ categories }) => {
                     alt=''
                   />
                 </div>
-                <h6 className='mt-3 mb-0 text-center text-light bold'>
+                <h6 className='my-3 mb-0 text-center text-light bold'>
                   Order Tracking
                 </h6>
               </div>
@@ -132,7 +109,7 @@ const Footer = ({ categories }) => {
                     alt=''
                   />
                 </div>
-                <h6 className='mt-3 mb-0 text-center text-light bold'>
+                <h6 className='my-3 mb-0 text-center text-light bold'>
                   Secure Checkout
                 </h6>
               </div>
@@ -144,7 +121,7 @@ const Footer = ({ categories }) => {
                     alt=''
                   />
                 </div>
-                <h6 className='mt-3 mb-0 text-center text-light bold'>
+                <h6 className='my-3 mb-0 text-center text-light bold'>
                   Customer Support
                 </h6>
               </div>
@@ -170,28 +147,19 @@ const Footer = ({ categories }) => {
               <div className='col-md-4 text-center'>
                 <a className='d-inline-block align-middle mr-3' href='#'>
                   <img
-                    className='img-responsive logo'
-                    src='assets/img/logo-light.png'
+                    className='img-responsive logo m-5'
+                    src='assets/img/logo.png'
                     alt=''
                   />
                 </a>
               </div>
               <div className='col-md-4 d-flex'>
                 <nav className='nav ml-md-auto'>
-                  <a className='btn btn-sm btn-dark mr-2' href='#'>
-                    <i className='fab fa-twitter'></i>
-                  </a>
-                  <a className='btn btn-sm btn-dark mr-2' href='#'>
-                    <i className='fab fa-facebook'></i>
-                  </a>
-                  <a className='btn btn-sm btn-dark mr-2' href='#'>
-                    <i className='fab fa-instagram'></i>
-                  </a>
-                  <a className='btn btn-sm btn-dark mr-2' href='#'>
-                    <i className='fab fa-pinterest'></i>
-                  </a>
-                  <a className='btn btn-sm btn-dark' href='#'>
-                    <i className='fab fa-youtube'></i>
+                  <a
+                    className='btn btn-sm btn-dark mr-2'
+                    href='https://github.com/cl0udsurfer'
+                  >
+                    <i className='fab fa-github'></i>
                   </a>
                 </nav>
               </div>

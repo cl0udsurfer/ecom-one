@@ -7,13 +7,16 @@ const ProductCard = ({ product }) => {
   return (
     <div class='col-sm-6 col-md-4 col-lg-3 shadow-hover'>
       <div class='card product-card border-0'>
-        <a class='card-img-top d-block overflow-hidden' href='javascript:;'>
+        <Link
+          class='card-img-top d-block overflow-hidden'
+          to={`/product/${product._id}`}
+        >
           <img
             src='assets/img/shop/products/externalharddrive.png'
             class='img-responsive mx-auto'
             alt=''
           />
-        </a>
+        </Link>
         <div class='card-body'>
           <a class='product-category text-muted font-xs' href='javascript:;'>
             product.category
