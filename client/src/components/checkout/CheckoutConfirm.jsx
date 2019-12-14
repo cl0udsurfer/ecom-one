@@ -1,6 +1,7 @@
 import React from 'react';
 
 import OrderSummary from './OrderSummary';
+import ShowImage from '../../api/showImage';
 
 const CheckoutConfirm = ({ cartItems }) => {
   return (
@@ -11,12 +12,7 @@ const CheckoutConfirm = ({ cartItems }) => {
           <div className='col-md-8 col-lg-9 col-xl-10'>
             <div className='media d-block text-center d-sm-flex text-sm-left'>
               <a className='mr-sm-4'>
-                <img
-                  src='assets/img/shop/products/computerconnection.png'
-                  className='img-responsive mx-auto'
-                  style={{ maxWidth: '120px' }}
-                  alt=''
-                />
+                <ShowImage className='img-responsive mx-auto' product={items} />
               </a>
               <div className='media-body'>
                 <a className='product-category text-muted font-xs'>

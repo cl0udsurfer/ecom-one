@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import LayoutMain from '../../components/core/LayoutMain';
 import { getProduct } from '../../api/admin';
 import AddToCartButton from '../../components/core/AddToCartButton';
+import ShowImage from '../../api/showImage';
 
 const ProductPage = props => {
   const [product, setProduct] = useState({});
@@ -50,10 +51,9 @@ const ProductPage = props => {
                           class='stroke-primary'
                         ></i>
 
-                        <img
-                          src='assets/img/shop/products/externalharddrive.png'
-                          class='img-responsive mx-auto'
-                          alt=''
+                        <ShowImage
+                          className='img-responsive mx-auto'
+                          product={product}
                         />
                       </div>
                       <div

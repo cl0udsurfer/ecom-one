@@ -2,6 +2,7 @@ const express = require('express');
 const dotenv = require('dotenv');
 const morgan = require('morgan');
 const cors = require('cors');
+const helmet = require('helmet');
 
 const connectDB = require('./config/db');
 const errorHandler = require('./middleware/error');
@@ -9,6 +10,7 @@ const errorHandler = require('./middleware/error');
 const app = express();
 
 app.use(cors());
+app.use(helmet());
 
 // Load env vars
 dotenv.config({ path: './config/config.env' });
@@ -31,12 +33,14 @@ const product = require('./routes/product');
 const order = require('./routes/order');
 const user = require('./routes/user');
 const braintreeRoutes = require('./routes/braintree');
+const photo = require('./routes/photo');
 
 // Mount Routers
 app.use('/api/v1/auth', auth);
 app.use('/api/v1/category', category);
 app.use('/api/v1/product', product);
 app.use('/api/v1/orders', order);
+app.use('/api/v1/photo', photo);
 app.use('/api/v1/user', user);
 app.use('/api/v1/braintree', braintreeRoutes);
 

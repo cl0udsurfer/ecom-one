@@ -1,5 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import ShowImage from '../../api/showImage';
 
 import AddToCartButton from './AddToCartButton';
 
@@ -11,15 +12,11 @@ const ProductCard = ({ product }) => {
           class='card-img-top d-block overflow-hidden'
           to={`/product/${product._id}`}
         >
-          <img
-            src='assets/img/shop/products/externalharddrive.png'
-            class='img-responsive mx-auto'
-            alt=''
-          />
+          <ShowImage className='img-responsive mx-auto' product={product} />
         </Link>
         <div class='card-body'>
           <a class='product-category text-muted font-xs' href='javascript:;'>
-            product.category
+            {product.category.name}
           </a>
           <h3 class='product-title font-sm'>
             <a href='javascript:;' class='text-darker'>

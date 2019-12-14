@@ -28,11 +28,14 @@ exports.getProducts = asyncHandler(async (req, res, next) => {
       path: 'category',
       select: 'name'
     });
-    res.status(200).json({
-      success: true,
-      count: products.length,
-      data: products
-    });
+    res
+      .status(200)
+      .json({
+        success: true,
+        count: products.length,
+        data: products
+      })
+      .select('-photo');
   }
 });
 
@@ -51,10 +54,13 @@ exports.getProduct = asyncHandler(async (req, res, next) => {
     );
   }
 
-  res.status(200).json({
-    success: true,
-    data: product
-  });
+  res
+    .status(200)
+    .json({
+      success: true,
+      data: product
+    })
+    .select('-photo');
 });
 
 // @desc    Create Product

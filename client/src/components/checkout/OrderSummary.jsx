@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import ShowImage from '../../api/showImage';
 
 const OrderSummary = ({
   values,
@@ -22,11 +23,10 @@ const OrderSummary = ({
                 <div className='border-bottom py-3' key={i}>
                   <div className='media d-block text-center d-sm-flex text-sm-left'>
                     <a className='mr-sm-4' href='javascript:;'>
-                      <img
-                        src='assets/img/shop/products/computerconnection.png'
+                      <ShowImage
                         className='img-responsive mx-auto'
-                        style={{ maxWidth: '80px' }}
-                        alt=''
+                        style={{ maxWidth: '50px' }}
+                        product={item}
                       />
                     </a>
                     <div className='media-body'>
@@ -34,7 +34,7 @@ const OrderSummary = ({
                         className='product-category text-muted font-xs'
                         href='javascript:;'
                       >
-                        Category
+                        {item.category.name}
                       </a>
                       <h6 className='product-title bold d-flex'>
                         <a href='javascript:;' className='text-darker mr-auto'>

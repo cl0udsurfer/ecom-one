@@ -1,6 +1,7 @@
 import React from 'react';
 
 import { removeItem } from '../../api/cart';
+import ShowImage from '../../api/showImage';
 
 const CartList = ({ items }) => {
   return (
@@ -8,12 +9,7 @@ const CartList = ({ items }) => {
       <div class='col-md-8 col-lg-9 col-xl-10'>
         <div class='media d-block text-center d-sm-flex text-sm-left'>
           <a class='mr-sm-4' href='javascript:;'>
-            <img
-              src='assets/img/shop/products/computerconnection.png'
-              class='img-responsive mx-auto'
-              style={{ maxWidth: '120px' }}
-              alt=''
-            />
+            <ShowImage className='img-responsive mx-auto' product={items} />
           </a>
           <div class='media-body'>
             <a class='product-category text-muted font-xs' href='javascript:;'>
