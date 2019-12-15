@@ -1,12 +1,13 @@
 import React from 'react';
 import { API } from '../config/config';
 
-const ShowImage = ({ product }) => (
+const ShowImage = ({ product, style, className }) => (
   <div>
     <img
       src={`${API}/photo/${product._id}`}
       alt={product.name}
-      style={{ maxHeight: '100%', maxWidth: '100%' }}
+      style={style}
+      className={className}
     />
   </div>
 );

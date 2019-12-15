@@ -12,7 +12,11 @@ const ProductCard = ({ product }) => {
           class='card-img-top d-block overflow-hidden'
           to={`/product/${product._id}`}
         >
-          <ShowImage className='img-responsive mx-auto' product={product} />
+          <ShowImage
+            style={{ height: '200px' }}
+            className='img-responsive mx-auto'
+            product={product}
+          />
         </Link>
         <div class='card-body'>
           <a class='product-category text-muted font-xs' href='javascript:;'>

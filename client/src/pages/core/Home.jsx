@@ -72,7 +72,7 @@ const Home = () => {
                       <p className='lead text-light pb-3'>
                         Build with MERN Stack
                       </p>
-                      <Link className='btn btn-primary' href='/shop'>
+                      <Link className='btn btn-primary' to='/shop'>
                         Shop Now
                         <i className='fas fa-chevron-right ml-2 mr-n1'></i>
                       </Link>
@@ -107,10 +107,10 @@ const Home = () => {
                       <p className='lead text-light pb-3'>
                         Ecom-One is available on GitHub
                       </p>
-                      <a className='btn btn-primary' href='javascript:;'>
+                      <Link className='btn btn-primary' to='/shop'>
                         Shop Now
                         <i className='fas fa-chevron-right ml-2 mr-n1'></i>
-                      </a>
+                      </Link>
                     </div>
                   </div>
                 </div>
@@ -146,7 +146,7 @@ const Home = () => {
                 </p>
                 <p className='text-muted mb-5'>
                   By registering you accept the
-                  <a href='#!'>Terms and Conditions</a> policy
+                  <a href='#'>Terms and Conditions</a> policy
                 </p>
                 <RegisterForm />
               </div>
@@ -169,9 +169,12 @@ const Home = () => {
                   <p class='text-light mt-0'>
                     Discover what&#39;s new on Virtual Reality
                   </p>
-                  <a href='#!' class='btn btn-contrast'>
+                  <Link
+                    to='/category/5df55d90e2704120ea9f44e5'
+                    class='btn btn-contrast'
+                  >
                     Shop VR Glasses
-                  </a>
+                  </Link>
                 </div>
               </div>
             </div>
@@ -185,9 +188,12 @@ const Home = () => {
                 <div class='pl-lg-3'>
                   <h3 class='bold text-contrast mt-0'>Monitors</h3>
                   <p class='text-light mt-0'>$30 Off on selected monitors</p>
-                  <a href='#!' class='btn btn-contrast'>
+                  <Link
+                    to='/category/5df55d9be2704120ea9f44e6'
+                    class='btn btn-contrast'
+                  >
                     Shop Monitors
-                  </a>
+                  </Link>
                 </div>
               </div>
             </div>
@@ -227,24 +233,24 @@ const Home = () => {
                 your favorites tablets, smartphones, watches and more"
               </p>
               <nav class='nav'>
-                <a
-                  href='javascript:;'
+                <Link
+                  to='/category/5df55e5ce2704120ea9f44ec'
                   class='nav-link nav-item dotted px-0 mx-2 ml-0'
                 >
                   Tablets
-                </a>
-                <a
-                  href='javascript:;'
+                </Link>
+                <Link
+                  to='/category/5df55db4e2704120ea9f44e9'
                   class='nav-link nav-item dotted px-0 mx-2'
                 >
                   Smartphones
-                </a>
-                <a
-                  href='javascript:;'
+                </Link>
+                <Link
+                  to='/category/5df55da7e2704120ea9f44e7'
                   class='nav-link nav-item dotted px-0 mx-2'
                 >
                   Watches
-                </a>
+                </Link>
               </nav>
             </div>
           </div>
@@ -267,9 +273,12 @@ const Home = () => {
                   <p class='text-light mt-0'>
                     Smart electronic devices for your day to day life.
                   </p>
-                  <a href='javascript:;' class='btn btn-contrast'>
+                  <Link
+                    to='/category/5df55da7e2704120ea9f44e7'
+                    class='btn btn-contrast'
+                  >
                     Shop Wearable
-                  </a>
+                  </Link>
                 </div>
               </div>
               <div class='rounded promo-block zoom-background mt-4'>
@@ -285,9 +294,12 @@ const Home = () => {
                   <p class='text-light mt-0'>
                     Make your life easeier with these smart solutions.
                   </p>
-                  <a href='javascript:;' class='btn btn-contrast'>
+                  <Link
+                    to='/category/5df55daee2704120ea9f44e8'
+                    class='btn btn-contrast'
+                  >
                     Shop Innovative
-                  </a>
+                  </Link>
                 </div>
               </div>
             </div>
@@ -305,9 +317,12 @@ const Home = () => {
                   <p class='text-dark mt-0'>
                     Your personal smartphone are just one click away.
                   </p>
-                  <a href='javascript:;' class='btn btn-contrast'>
+                  <Link
+                    to='/category/5df55db4e2704120ea9f44e9'
+                    class='btn btn-contrast'
+                  >
                     Shop Smartphones
-                  </a>
+                  </Link>
                 </div>
               </div>
             </div>
@@ -325,9 +340,12 @@ const Home = () => {
                     Exclusive high quality wifi technology to extend your
                     network.
                   </p>
-                  <a href='javascript:;' class='btn btn-contrast'>
+                  <Link
+                    to='/category/5df55dbce2704120ea9f44ea'
+                    class='btn btn-contrast'
+                  >
                     Shop Wifi
-                  </a>
+                  </Link>
                 </div>
               </div>
               <div class='rounded promo-block zoom-background mt-4'>
@@ -343,9 +361,12 @@ const Home = () => {
                   <p class='text-light mt-0'>
                     Enjoy your favorite playlist with an amazing sound quality.
                   </p>
-                  <a href='javascript:;' class='btn btn-contrast'>
+                  <Link
+                    to='/category/5df55dc3e2704120ea9f44eb'
+                    class='btn btn-contrast'
+                  >
                     Shop Headphones
-                  </a>
+                  </Link>
                 </div>
               </div>
             </div>

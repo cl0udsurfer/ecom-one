@@ -92,7 +92,7 @@ const CheckoutPage = () => {
 
   // Go back to previous Step
   const prevStep = () => {
-    setValues({ ...values, step: step + 1 });
+    setValues({ ...values, step: step - 1 });
   };
 
   const handleChange = name => event => {

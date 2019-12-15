@@ -9,7 +9,11 @@ const CartList = ({ items }) => {
       <div class='col-md-8 col-lg-9 col-xl-10'>
         <div class='media d-block text-center d-sm-flex text-sm-left'>
           <a class='mr-sm-4' href='javascript:;'>
-            <ShowImage className='img-responsive mx-auto' product={items} />
+            <ShowImage
+              style={{ maxWidth: '200px' }}
+              className='img-responsive mx-auto'
+              product={items}
+            />
           </a>
           <div class='media-body'>
             <a class='product-category text-muted font-xs' href='javascript:;'>

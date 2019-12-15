@@ -25,7 +25,7 @@ const OrderSummary = ({
                     <a className='mr-sm-4' href='javascript:;'>
                       <ShowImage
                         className='img-responsive mx-auto'
-                        style={{ maxWidth: '50px' }}
+                        style={{ maxWidth: '100px' }}
                         product={item}
                       />
                     </a>
